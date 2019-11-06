@@ -11,6 +11,7 @@ public class Reserva {
 	@PrimaryKey
 	String idReserva = null;
 	int numPasajeros = 0;
+	Vuelo vuelo = null;
 	Date fecha = null;
 	double hora = 0;
 

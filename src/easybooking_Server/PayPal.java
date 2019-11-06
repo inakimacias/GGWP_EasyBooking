@@ -2,6 +2,7 @@ package easybooking_Server;
 
 public class PayPal {
 
+	
 	String idPaypal = "";
 	
 	public PayPal(String idPaypal) {

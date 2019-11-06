@@ -1,10 +1,17 @@
 package easybooking_Server;
 
+import java.util.Date;
+
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class InformePago {
 	
+	@PrimaryKey
+	String idInformePago = "";
 	double coste = 0;
 	Date fecha = null;
-	String idInformePago = "";
 	
 	public InformePago(double coste, Date fecha, String idInformePago) {
 		this.coste = coste;

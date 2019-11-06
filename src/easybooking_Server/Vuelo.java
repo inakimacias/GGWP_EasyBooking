@@ -10,6 +10,7 @@ public class Vuelo {
 	
 	@PrimaryKey
 	int numeroVuelo = 0;	
+	Aerolinea aerolinea = null;
 	Date salidaFecha = null;
 	Date llegadaFecha = null;
 	int asientosTotales = 0;
@@ -17,8 +18,9 @@ public class Vuelo {
 	Aeropuerto origen = new Aeropuerto(null);
 	Aeropuerto destino = new Aeropuerto(null);
 	
-	public Vuelo(int numeroVuelo, Date salidaFecha, Date llegadaFecha, int asientosTotales, int asientosVacantes, Aeropuerto origen, Aeropuerto destino) {
+	public Vuelo(int numeroVuelo, Aerolinea aerolinea, Date salidaFecha, Date llegadaFecha, int asientosTotales, int asientosVacantes, Aeropuerto origen, Aeropuerto destino) {
 		this.numeroVuelo = numeroVuelo;
+		this.aerolinea = aerolinea;
 		this.salidaFecha = salidaFecha;
 		this.llegadaFecha = llegadaFecha;
 		this.asientosTotales = asientosTotales;

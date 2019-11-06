@@ -1,4 +1,4 @@
-package easybooking_Client;
+package easybooking_Server;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
