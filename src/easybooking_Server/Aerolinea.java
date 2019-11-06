@@ -11,8 +11,8 @@ public class Aerolinea {
 	String nombreAerolinea = null;
 	
 	public Aerolinea(String idAerolinea, String nombreAerolinea) {
-		idAerolinea = this.idAerolinea;
-		nombreAerolinea = this.nombreAerolinea;
+		this.idAerolinea = idAerolinea;
+		this.nombreAerolinea = nombreAerolinea;
 	}
 
 	public String getIdAerolinea() {

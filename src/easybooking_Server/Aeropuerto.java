@@ -10,7 +10,7 @@ public class Aeropuerto {
 	String nombreAeropuerto = null;
 	
 	public Aeropuerto(String nombreAeropuerto) {
-		nombreAeropuerto = this.nombreAeropuerto;
+		this.nombreAeropuerto = nombreAeropuerto;
 	}
 
 	public String getNombreAeropuerto() {

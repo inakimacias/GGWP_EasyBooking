@@ -11,15 +11,16 @@ public class Reserva {
 	@PrimaryKey
 	String idReserva = null;
 	int numPasajeros = 0;
+	String[] nombrePasajeros = null;
 	Vuelo vuelo = null;
 	Date fecha = null;
 	double hora = 0;
 
-	public Reserva(String idReserva, int numPasajeros, Date fecha, double hora) {
+	public Reserva(String idReserva, int numPasajeros, String[] nombrePasajeros, Date fecha) {
 		this.idReserva = idReserva;
 		this.numPasajeros = numPasajeros;
+		this.nombrePasajeros = nombrePasajeros;
 		this.fecha = fecha;
-		this.hora = hora;
 	}
 
 	public String getIdReserva() {

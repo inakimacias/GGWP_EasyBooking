@@ -1,5 +1,7 @@
 package easybooking_Server;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.jdo.Extent;
@@ -8,9 +10,6 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-
-import es.deusto.ingenieria.sd.jdo.accounts.Account;
-import es.deusto.ingenieria.sd.jdo.accounts.User;
 
 public class Main {
 
@@ -23,9 +22,17 @@ public class Main {
 		//Transaction to group DB operations
 		Transaction tx = null;		
 		
-		Aerolinea aerolineaIberia = new Aerolinea("Iberia");
-		
-		
+		Date salidaVuelo = new Date();
+		Date llegadaVuelo = new Date();
+		Aerolinea aerolineaIberia = new Aerolinea("IBR", "Iberia");
+		Aeropuerto aeropuertoLoiu = new Aeropuerto("Loiu");
+	    Aeropuerto aeropuertoMunich = new Aeropuerto("Munich");
+	    Vuelo vuelo = new Vuelo(0001, aerolineaIberia, salidaVuelo, llegadaVuelo, 120, 60, aeropuertoLoiu, aeropuertoMunich);	
+	    Usuario elDani = new Usuario("danaso@opendeusto.es", aeropuertoLoiu);
+	    String[] nombres = {"Dani","Ruben","Inaki","Alberto"};
+	    
+	    Reserva reservaDani = new Reserva("888", 4, nombres, salidaVuelo);
+	    
 		//GUARDADO DE DATOS
 		//GUARDADO DE DATOS
 		//GUARDADO DE DATOS

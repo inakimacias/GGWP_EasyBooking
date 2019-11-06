@@ -8,9 +8,11 @@ public class Usuario {
 	
 	@PrimaryKey
 	String email = null;
+	Aeropuerto predAirp = null;
 	
-	public Usuario(String email) {
-		email = this.email;
+	public Usuario(String email, Aeropuerto predAirp) {
+		this.email = email;
+		this.predAirp = predAirp;
 	}
 
 	public String getEmail() {
