@@ -12,5 +12,13 @@ public class Usuario {
 	public Usuario(String email) {
 		email = this.email;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 }

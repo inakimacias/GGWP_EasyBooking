@@ -11,4 +11,12 @@ public class Aeropuerto {
 		nombreAeropuerto = this.nombreAeropuerto;
 	}
 
+	public String getNombreAeropuerto() {
+		return nombreAeropuerto;
+	}
+
+	public void setNombreAeropuerto(String nombreAeropuerto) {
+		this.nombreAeropuerto = nombreAeropuerto;
+	}
+
 }

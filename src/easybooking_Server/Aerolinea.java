@@ -13,4 +13,20 @@ public class Aerolinea {
 		nombreAerolinea = this.nombreAerolinea;
 	}
 
+	public String getIdAerolinea() {
+		return idAerolinea;
+	}
+
+	public void setIdAerolinea(String idAerolinea) {
+		this.idAerolinea = idAerolinea;
+	}
+
+	public String getNombreAerolinea() {
+		return nombreAerolinea;
+	}
+
+	public void setNombreAerolinea(String nombreAerolinea) {
+		this.nombreAerolinea = nombreAerolinea;
+	}
+
 }
