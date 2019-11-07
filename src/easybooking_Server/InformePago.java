@@ -2,6 +2,7 @@ package easybooking_Server;
 
 import java.util.Date;
 
+import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
@@ -12,11 +13,16 @@ public class InformePago {
 	String idInformePago = "";
 	double coste = 0;
 	Date fecha = null;
+	@ForeignKey
+	String idMetodoPago = null;
 	
-	public InformePago(double coste, Date fecha, String idInformePago) {
+	
+
+	public InformePago(String idInformePago, double coste, Date fecha, String idMetodoPago) {
+		this.idInformePago = idInformePago;
 		this.coste = coste;
 		this.fecha = fecha;
-		this.idInformePago = idInformePago;
+		this.idMetodoPago = idMetodoPago;
 	}
 
 	public double getCoste() {
@@ -41,6 +47,14 @@ public class InformePago {
 
 	public void setIdInformePago(String idInformePago) {
 		this.idInformePago = idInformePago;
+	}
+
+	public String getIdMetodoPago() {
+		return idMetodoPago;
+	}
+
+	public void setIdMetodoPago(String idMetodoPago) {
+		this.idMetodoPago = idMetodoPago;
 	}
 
 }

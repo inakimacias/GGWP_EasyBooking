@@ -9,7 +9,6 @@ public class Aerolinea {
 	@PrimaryKey
 	String idAerolinea = null;
 	
-	
 	public Aerolinea(String idAerolinea) {
 		this.idAerolinea = idAerolinea;
 	}

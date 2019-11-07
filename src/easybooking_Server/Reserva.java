@@ -2,6 +2,7 @@ package easybooking_Server;
 
 import java.util.Date;
 
+import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
@@ -13,12 +14,23 @@ public class Reserva {
 	int numPasajeros = 0;
 	String[] nombrePasajeros = null;
 	Date fecha = null;
-
-	public Reserva(String idReserva, int numPasajeros, String[] nombrePasajeros, Date fecha) {
+	@ForeignKey
+	String usuario = null;
+	@ForeignKey
+	String idVuelo = null;
+	@ForeignKey
+	String idInformePago = null;
+	
+	public Reserva(String idReserva, int numPasajeros, String[] nombrePasajeros, Date fecha, String usuario,
+			String idVuelo, String idInformePago) {
+		super();
 		this.idReserva = idReserva;
 		this.numPasajeros = numPasajeros;
 		this.nombrePasajeros = nombrePasajeros;
 		this.fecha = fecha;
+		this.usuario = usuario;
+		this.idVuelo = idVuelo;
+		this.idInformePago = idInformePago;
 	}
 
 	public String getIdReserva() {
@@ -37,6 +49,14 @@ public class Reserva {
 		this.numPasajeros = numPasajeros;
 	}
 
+	public String[] getNombrePasajeros() {
+		return nombrePasajeros;
+	}
+
+	public void setNombrePasajeros(String[] nombrePasajeros) {
+		this.nombrePasajeros = nombrePasajeros;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -45,5 +65,30 @@ public class Reserva {
 		this.fecha = fecha;
 	}
 
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getIdVuelo() {
+		return idVuelo;
+	}
+
+	public void setIdVuelo(String idVuelo) {
+		this.idVuelo = idVuelo;
+	}
+
+	public String getIdInformePago() {
+		return idInformePago;
+	}
+
+	public void setIdInformePago(String idInformePago) {
+		this.idInformePago = idInformePago;
+	}
+	
+	
 	
 }
