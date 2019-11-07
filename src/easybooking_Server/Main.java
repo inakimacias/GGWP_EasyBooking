@@ -1,10 +1,8 @@
 package easybooking_Server;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -52,7 +50,7 @@ public class Main {
 			pm.makePersistent(reservaDani);
 			
 			tx.commit();
-			System.out.println("Datos guardados en BD");
+			System.out.println("- Datos guardados en BD");
 			
 		} catch (Exception ex) {
 			System.err.println("Error guardando datos " + ex.getMessage());
@@ -116,10 +114,11 @@ public class Main {
 
 			Query<Usuario> query = pm.newQuery(Usuario.class);
 
-			System.out.println(" * '" + query.deletePersistentAll() + "' usuarios borrados de la BD.");
+			System.out.println( query.deletePersistentAll() + "' usuarios borrados de la BD.");
 			
 			//End the transaction
 			tx.commit();
+			System.out.println("Datos borrados");
 		} catch (Exception ex) {
 			System.err.println(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
 		} finally {
@@ -150,6 +149,7 @@ public class Main {
 			
 			//End the transaction
 			tx.commit();
+			System.out.println("Datos actualizados");
 		} catch (Exception ex) {
 			System.err.println(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
 		} finally {
