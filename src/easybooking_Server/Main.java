@@ -24,10 +24,10 @@ public class Main {
 		
 		Date salidaVuelo = new Date();
 		Date llegadaVuelo = new Date();
-		Aerolinea aerolineaIberia = new Aerolinea("IBR", "Iberia");
+		Aerolinea aerolineaIberia = new Aerolinea("IBR");
 		Aeropuerto aeropuertoLoiu = new Aeropuerto("Loiu");
 	    Aeropuerto aeropuertoMunich = new Aeropuerto("Munich");
-	    Vuelo vuelo = new Vuelo(0001, aerolineaIberia, salidaVuelo, llegadaVuelo, 120, 60, aeropuertoLoiu, aeropuertoMunich);	
+	    Vuelo vuelo = new Vuelo(0001);	
 	    Usuario elDani = new Usuario("danaso@opendeusto.es", aeropuertoLoiu);
 	    String[] nombres = {"Dani","Ruben","Inaki","Alberto"};
 	    
@@ -45,10 +45,14 @@ public class Main {
 			
 			tx.begin();
 			
-			pm.makePersistent(user1);
-			pm.makePersistent(user2);			
+			pm.makePersistent(elDani);
+			pm.makePersistent(vuelo);
+			pm.makePersistent(aeropuertoLoiu);
+			pm.makePersistent(aerolineaIberia);
+			pm.makePersistent(reservaDani);
 			
-			tx.commit();			
+			tx.commit();
+			System.out.println("Datos guardados en BD");
 			
 		} catch (Exception ex) {
 			System.err.println("Error guardando datos " + ex.getMessage());
@@ -59,7 +63,6 @@ public class Main {
 			
 			if (pm != null && !pm.isClosed()) {
 				pm.close();
-				// ATTENTION -  Datanucleus detects that the objects in memory were changed and they are flushed to DB
 			}
 		}
 		
@@ -68,7 +71,7 @@ public class Main {
 		//SELECCIONAR DATOS
 		//SELECCIONAR DATOS
 		try {
-			System.out.println("- Retrieving accounts with balace > 200.0 using a 'Query'...");			
+			System.out.println("- Seleccionando aeropuertos usando 'Query'...");			
 			//Get the Persistence Manager
 			pm = pmf.getPersistenceManager();
 			//Obtain the current transaction
@@ -76,20 +79,19 @@ public class Main {
 			//Start the transaction
 			tx.begin();
 
-			Query<Account> query = pm.newQuery(Account.class);
-			query.setFilter("balance > 200.0");
+			Query<Aeropuerto> query = pm.newQuery(Aeropuerto.class);
 			
 			@SuppressWarnings("unchecked")
-			List<Account> accounts = (List<Account>) query.execute();
+			List<Aeropuerto> aeropuertos = (List<Aeropuerto>) query.execute();
 
 			//End the transaction
 			tx.commit();
 			
-			for (Account account : accounts) {
-				System.out.println("  -> " + account.getUser().getFullName() + " - " + account.getBankName());
+			for (Aeropuerto aeropuerto : aeropuertos) {
+				System.out.println("  -> " + aeropuerto.getNombreAeropuerto());
 			}
 		} catch (Exception ex) {
-			System.err.println(" $ Error retrieving accounts using a 'Query': " + ex.getMessage());
+			System.err.println(" $ Error seleccionando aeropuertos usando 'Query': " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
@@ -112,15 +114,39 @@ public class Main {
 			//Start the transaction
 			tx.begin();
 
-			Query<User> query = pm.newQuery(User.class);
-			@SuppressWarnings("unchecked")
-			List<User> users = (List<User>) query.execute();
+			Query<Usuario> query = pm.newQuery(Usuario.class);
+
+			System.out.println(" * '" + query.deletePersistentAll() + "' usuarios borrados de la BD.");
 			
-			for (User user : users) {
-				System.out.println("  -> Retrieved user: " + user.getFullName());
-				System.out.println("     + Removing user from the addresses ... ");
-				user.removeUserFromAddresses();
+			//End the transaction
+			tx.commit();
+		} catch (Exception ex) {
+			System.err.println(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
 			}
+			
+			if (pm != null && !pm.isClosed()) {
+				pm.close();
+			}
+		}
+		
+		//ACTUALIZAR DATOS
+		//ACTUALIZAR DATOS
+		//ACTUALIZAR DATOS
+		//ACTUALIZAR DATOS
+		try {			
+			//Get the Persistence Manager
+			pm = pmf.getPersistenceManager();
+			//Obtain the current transaction
+			tx = pm.currentTransaction();		
+			//Start the transaction
+			tx.begin();
+
+			aerolineaIberia.setIdAerolinea("AEO");
+			
+			pm.makePersistent(aerolineaIberia);
 			
 			//End the transaction
 			tx.commit();

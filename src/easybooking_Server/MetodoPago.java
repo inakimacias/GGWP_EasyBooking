@@ -1,7 +1,12 @@
 package easybooking_Server;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class MetodoPago {
 
+	@PrimaryKey
 	String idMetPago = "";
 	
 	public MetodoPago(String idMetPago) {

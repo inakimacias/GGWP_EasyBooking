@@ -8,11 +8,10 @@ public class Aerolinea {
 	
 	@PrimaryKey
 	String idAerolinea = null;
-	String nombreAerolinea = null;
 	
-	public Aerolinea(String idAerolinea, String nombreAerolinea) {
+	
+	public Aerolinea(String idAerolinea) {
 		this.idAerolinea = idAerolinea;
-		this.nombreAerolinea = nombreAerolinea;
 	}
 
 	public String getIdAerolinea() {
@@ -21,14 +20,6 @@ public class Aerolinea {
 
 	public void setIdAerolinea(String idAerolinea) {
 		this.idAerolinea = idAerolinea;
-	}
-
-	public String getNombreAerolinea() {
-		return nombreAerolinea;
-	}
-
-	public void setNombreAerolinea(String nombreAerolinea) {
-		this.nombreAerolinea = nombreAerolinea;
 	}
 
 }

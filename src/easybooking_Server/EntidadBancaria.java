@@ -1,8 +1,14 @@
 package easybooking_Server;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class EntidadBancaria {
 
+	@PrimaryKey
 	String idEntBancaria = "";
+	
 	long numTarjeta = 0;
 	
 	public EntidadBancaria(String idEntBancaria, long numTarjeta) {
