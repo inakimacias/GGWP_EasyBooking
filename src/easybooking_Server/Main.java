@@ -53,8 +53,8 @@ public class Main {
 			pm.makePersistent(aeropuertoLoiu);
 			pm.makePersistent(aerolineaIberia);
 			pm.makePersistent(reservaDani);
+			pm.makePersistent(informe);
 			pm.makePersistent(informe2);
-			pm.makePersistent(aerolineaRyanair);
 			pm.makePersistent(aerolineaRyanair);
 			pm.makePersistent(aeropuertoMunich);
 			pm.makePersistent(vuelo2);
@@ -89,16 +89,37 @@ public class Main {
 			tx.begin();
 
 			Query<Aeropuerto> query = pm.newQuery(Aeropuerto.class);
+			Query<Usuario> query1 = pm.newQuery(Usuario.class);
+			Query<Aerolinea> query2 = pm.newQuery(Aerolinea.class);
 			
 			@SuppressWarnings("unchecked")
 			List<Aeropuerto> aeropuertos = (List<Aeropuerto>) query.execute();
+			@SuppressWarnings("unchecked")
+			List<Usuario> usuarios = (List<Usuario>) query1.execute();
+			@SuppressWarnings("unchecked")
+			List<Aerolinea> aerolineas = (List<Aerolinea>) query2.execute();
 
 			//End the transaction
 			tx.commit();
 			
+			System.out.println(" - Todos los aeropuertos guardados en la BD");
+			
 			for (Aeropuerto aeropuerto : aeropuertos) {
 				System.out.println("  -> " + aeropuerto.getNombreAeropuerto());
 			}
+			
+			System.out.println(" - Todos los usuarios guardados en la BD");
+			
+			for (Usuario usuario : usuarios) {
+				System.out.println("  -> " + usuario.getEmail());
+			}
+			
+			System.out.println(" - Todas las aerolineas en la BD");
+			
+			for (Aerolinea aerolinea : aerolineas) {
+				System.out.println("  -> " + aerolinea.getIdAerolinea());
+			}
+			
 		} catch (Exception ex) {
 			System.err.println(" $ Error seleccionando aeropuertos usando 'Query': " + ex.getMessage());
 		} finally {
@@ -125,11 +146,13 @@ public class Main {
 
 			Query<Usuario> query = pm.newQuery(Usuario.class);
 
+			System.out.println(" - Borrar todos los usuarios de BD");
+			
 			System.out.println( query.deletePersistentAll() + "' usuarios borrados de la BD.");
 			
 			//End the transaction
 			tx.commit();
-			System.out.println("Datos borrados");
+			System.out.println(" - Datos borrados");
 		} catch (Exception ex) {
 			System.err.println(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
 		} finally {
@@ -154,13 +177,15 @@ public class Main {
 			//Start the transaction
 			tx.begin();
 
+			System.out.println(" - Cambiando codigo aerolinea Iberia de IBR  -> AEO ");
+			
 			aerolineaIberia.setIdAerolinea("AEO");
 			
 			pm.makePersistent(aerolineaIberia);
 			
 			//End the transaction
 			tx.commit();
-			System.out.println("Datos actualizados");
+			System.out.println(" - Datos actualizados");
 		} catch (Exception ex) {
 			System.err.println(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
 		} finally {
