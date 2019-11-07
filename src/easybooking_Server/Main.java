@@ -22,14 +22,15 @@ public class Main {
 		
 		Date salidaVuelo = new Date();
 		Date llegadaVuelo = new Date();
+		InformePago informe = new InformePago("AER", 50, null, "");
 		Aerolinea aerolineaIberia = new Aerolinea("IBR");
 		Aeropuerto aeropuertoLoiu = new Aeropuerto("Loiu");
 	    Aeropuerto aeropuertoMunich = new Aeropuerto("Munich");
-	    Vuelo vuelo = new Vuelo(0001);	
+	    Vuelo vuelo = new Vuelo("PAT", aerolineaIberia.getIdAerolinea(), aeropuertoLoiu.getNombreAeropuerto(), aeropuertoMunich.getNombreAeropuerto());	
 	    Usuario elDani = new Usuario("danaso@opendeusto.es", aeropuertoLoiu);
 	    String[] nombres = {"Dani","Ruben","Inaki","Alberto"};
 	    
-	    Reserva reservaDani = new Reserva("888", 4, nombres, salidaVuelo);
+	    Reserva reservaDani = new Reserva("888", 4, nombres, salidaVuelo, elDani.getEmail(), vuelo.getIdVuelo(), informe.getIdInformePago());
 	    
 		//GUARDADO DE DATOS
 		//GUARDADO DE DATOS

@@ -13,6 +13,7 @@ public class InformePago {
 	String idInformePago = "";
 	double coste = 0;
 	Date fecha = null;
+	
 	@ForeignKey
 	String idMetodoPago = null;
 	

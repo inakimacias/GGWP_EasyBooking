@@ -14,6 +14,7 @@ public class Reserva {
 	int numPasajeros = 0;
 	String[] nombrePasajeros = null;
 	Date fecha = null;
+	
 	@ForeignKey
 	String usuario = null;
 	@ForeignKey
@@ -23,7 +24,6 @@ public class Reserva {
 	
 	public Reserva(String idReserva, int numPasajeros, String[] nombrePasajeros, Date fecha, String usuario,
 			String idVuelo, String idInformePago) {
-		super();
 		this.idReserva = idReserva;
 		this.numPasajeros = numPasajeros;
 		this.nombrePasajeros = nombrePasajeros;

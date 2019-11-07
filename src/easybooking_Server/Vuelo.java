@@ -8,36 +8,36 @@ import javax.jdo.annotations.PrimaryKey;
 public class Vuelo {
 	
 	@PrimaryKey
-	int numeroVuelo = 0;
+	String idVuelo = null;
 	
 	@ForeignKey
-	String nomAerolinea = null;
+	String idAerolinea = null;
 	@ForeignKey
 	String nomDestino = null;
 	@ForeignKey
 	String nomOrigen = null;
-
-	public Vuelo(int numeroVuelo, String nomAerolinea, String nomDestino, String nomOrigen) {
-		super();
-		this.numeroVuelo = numeroVuelo;
-		this.nomAerolinea = nomAerolinea;
+	
+	public Vuelo(String idVuelo, String idAerolinea, String nomDestino, String nomOrigen) {
+		this.idVuelo = idVuelo;
+		this.idAerolinea = idAerolinea;
 		this.nomDestino = nomDestino;
 		this.nomOrigen = nomOrigen;
 	}
-	
-	public int getNumeroVuelo() {
-		return numeroVuelo;
-	}
-	public void setNumeroVuelo(int numeroVuelo) {
-		this.numeroVuelo = numeroVuelo;
+
+	public String getIdVuelo() {
+		return idVuelo;
 	}
 
-	public String getNomAerolinea() {
-		return nomAerolinea;
+	public void setIdVuelo(String idVuelo) {
+		this.idVuelo = idVuelo;
 	}
 
-	public void setNomAerolinea(String nomAerolinea) {
-		this.nomAerolinea = nomAerolinea;
+	public String getIdAerolinea() {
+		return idAerolinea;
+	}
+
+	public void setIdAerolinea(String idAerolinea) {
+		this.idAerolinea = idAerolinea;
 	}
 
 	public String getNomDestino() {
@@ -55,5 +55,7 @@ public class Vuelo {
 	public void setNomOrigen(String nomOrigen) {
 		this.nomOrigen = nomOrigen;
 	}
+
+	
 
 }
