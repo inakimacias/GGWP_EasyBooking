@@ -21,14 +21,20 @@ public class Main {
 		Transaction tx = null;		
 		
 		InformePago informe = new InformePago("AER", 50, null, "");
+		InformePago informe2 = new InformePago("BBB", 100, null, "");
 		Aerolinea aerolineaIberia = new Aerolinea("IBR");
+		Aerolinea aerolineaRyanair = new Aerolinea("RA");
 		Aeropuerto aeropuertoLoiu = new Aeropuerto("Loiu");
 	    Aeropuerto aeropuertoMunich = new Aeropuerto("Munich");
-	    Vuelo vuelo = new Vuelo("PAT", aerolineaIberia.getIdAerolinea(), aeropuertoLoiu.getNombreAeropuerto(), aeropuertoMunich.getNombreAeropuerto());	
+	    Aeropuerto aeropuertoMadrid = new Aeropuerto("Madrid");
+	    Vuelo vuelo = new Vuelo("PAT", aerolineaIberia.getIdAerolinea(), aeropuertoLoiu.getNombreAeropuerto(), aeropuertoMunich.getNombreAeropuerto());
+	    Vuelo vuelo2 = new Vuelo("AOP", aerolineaRyanair.getIdAerolinea(), aeropuertoMadrid.getNombreAeropuerto(), aeropuertoLoiu.getNombreAeropuerto());
 	    Usuario elDani = new Usuario("danaso@opendeusto.es", aeropuertoLoiu);
+	    Usuario elCorno = new Usuario("elCorno@gmail.com", aeropuertoMunich);
 	    String[] nombres = {"Dani","Ruben","Inaki","Alberto"};
 	    
 	    Reserva reservaDani = new Reserva("888", 4, nombres, new Date(), elDani.getEmail(), vuelo.getIdVuelo(), informe.getIdInformePago());
+	    Reserva reservaCorno = new Reserva("666", 4, nombres, new Date(), elCorno.getEmail(), vuelo2.getIdVuelo(), informe2.getIdInformePago());
 	    
 		//GUARDADO DE DATOS
 		//GUARDADO DE DATOS
@@ -47,6 +53,12 @@ public class Main {
 			pm.makePersistent(aeropuertoLoiu);
 			pm.makePersistent(aerolineaIberia);
 			pm.makePersistent(reservaDani);
+			pm.makePersistent(informe2);
+			pm.makePersistent(aerolineaRyanair);
+			pm.makePersistent(aerolineaRyanair);
+			pm.makePersistent(aeropuertoMunich);
+			pm.makePersistent(vuelo2);
+			pm.makePersistent(reservaCorno);
 			
 			tx.commit();
 			System.out.println("- Datos guardados en BD");
