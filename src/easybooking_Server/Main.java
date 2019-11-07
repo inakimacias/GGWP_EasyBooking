@@ -9,10 +9,14 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 public class Main {
 
 	public static void main(String[] args) {
-		
+		BasicConfigurator.configure();
+		final Logger LOGGER = Logger.getLogger("Logger");
 		// Load Persistence Manager Factory - referencing the Persistence Unit defined in persistence.xml
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		// Persistence Manager
@@ -49,6 +53,7 @@ public class Main {
 			tx.begin();
 			
 			pm.makePersistent(elDani);
+			pm.makePersistent(elCorno);
 			pm.makePersistent(vuelo);
 			pm.makePersistent(aeropuertoLoiu);
 			pm.makePersistent(aerolineaIberia);
@@ -61,10 +66,10 @@ public class Main {
 			pm.makePersistent(reservaCorno);
 			
 			tx.commit();
-			System.out.println("- Datos guardados en BD");
 			
+			LOGGER.info("- Datos guardados en BD");
 		} catch (Exception ex) {
-			System.err.println("Error guardando datos " + ex.getMessage());
+			LOGGER.error("Error guardando datos " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
@@ -79,8 +84,8 @@ public class Main {
 		//SELECCIONAR DATOS
 		//SELECCIONAR DATOS
 		//SELECCIONAR DATOS
-		try {
-			System.out.println("- Seleccionando aeropuertos usando 'Query'...");			
+		try {	
+			LOGGER.info("- Seleccionando aeropuertos usando 'Query'...");
 			//Get the Persistence Manager
 			pm = pmf.getPersistenceManager();
 			//Obtain the current transaction
@@ -102,26 +107,23 @@ public class Main {
 			//End the transaction
 			tx.commit();
 			
-			System.out.println(" - Todos los aeropuertos guardados en la BD");
-			
+			LOGGER.info(" - Aeropuertos guardados en la BD:");
 			for (Aeropuerto aeropuerto : aeropuertos) {
-				System.out.println("  -> " + aeropuerto.getNombreAeropuerto());
+				LOGGER.info("  -> " + aeropuerto.getNombreAeropuerto());
 			}
 			
-			System.out.println(" - Todos los usuarios guardados en la BD");
-			
+			LOGGER.info(" - Usuarios guardados en la BD:");
 			for (Usuario usuario : usuarios) {
-				System.out.println("  -> " + usuario.getEmail());
+				LOGGER.info("  -> " + usuario.getEmail());
 			}
 			
-			System.out.println(" - Todas las aerolineas en la BD");
-			
+			LOGGER.info(" - Aerolineas en la BD:");
 			for (Aerolinea aerolinea : aerolineas) {
-				System.out.println("  -> " + aerolinea.getIdAerolinea());
+				LOGGER.info("  -> " + aerolinea.getIdAerolinea());
 			}
 			
 		} catch (Exception ex) {
-			System.err.println(" $ Error seleccionando aeropuertos usando 'Query': " + ex.getMessage());
+			LOGGER.error(" $ Error seleccionando aeropuertos usando 'Query': " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
@@ -131,7 +133,7 @@ public class Main {
 				pm.close();
 			}
 		}
-		
+
 		//BORRADO DE DATOS
 		//BORRADO DE DATOS
 		//BORRADO DE DATOS
@@ -145,16 +147,15 @@ public class Main {
 			tx.begin();
 
 			Query<Usuario> query = pm.newQuery(Usuario.class);
-
-			System.out.println(" - Borrar todos los usuarios de BD");
 			
-			System.out.println( query.deletePersistentAll() + "' usuarios borrados de la BD.");
-			
+			LOGGER.info("");
+			LOGGER.info(" - Borrando todos los usuarios de BD");
+			LOGGER.info(query.deletePersistentAll() + "' usuarios borrados de la BD.");
 			//End the transaction
 			tx.commit();
-			System.out.println(" - Datos borrados");
+			LOGGER.info(" - Datos borrados");
 		} catch (Exception ex) {
-			System.err.println(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
+			LOGGER.error(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
@@ -177,17 +178,17 @@ public class Main {
 			//Start the transaction
 			tx.begin();
 
-			System.out.println(" - Cambiando codigo aerolinea Iberia de IBR  -> AEO ");
-			
+			LOGGER.info("");
+			LOGGER.info(" - Cambiando codigo aerolinea Iberia de IBR  -> AEO ");
 			aerolineaIberia.setIdAerolinea("AEO");
 			
 			pm.makePersistent(aerolineaIberia);
 			
 			//End the transaction
 			tx.commit();
-			System.out.println(" - Datos actualizados");
+			LOGGER.info(" - Datos actualizados");
 		} catch (Exception ex) {
-			System.err.println(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
+			LOGGER.error(" $ Error updating  'IBR -> AEO': " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
