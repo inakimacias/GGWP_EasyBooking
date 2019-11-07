@@ -20,8 +20,6 @@ public class Main {
 		//Transaction to group DB operations
 		Transaction tx = null;		
 		
-		Date salidaVuelo = new Date();
-		Date llegadaVuelo = new Date();
 		InformePago informe = new InformePago("AER", 50, null, "");
 		Aerolinea aerolineaIberia = new Aerolinea("IBR");
 		Aeropuerto aeropuertoLoiu = new Aeropuerto("Loiu");
@@ -30,7 +28,7 @@ public class Main {
 	    Usuario elDani = new Usuario("danaso@opendeusto.es", aeropuertoLoiu);
 	    String[] nombres = {"Dani","Ruben","Inaki","Alberto"};
 	    
-	    Reserva reservaDani = new Reserva("888", 4, nombres, salidaVuelo, elDani.getEmail(), vuelo.getIdVuelo(), informe.getIdInformePago());
+	    Reserva reservaDani = new Reserva("888", 4, nombres, new Date(), elDani.getEmail(), vuelo.getIdVuelo(), informe.getIdInformePago());
 	    
 		//GUARDADO DE DATOS
 		//GUARDADO DE DATOS
