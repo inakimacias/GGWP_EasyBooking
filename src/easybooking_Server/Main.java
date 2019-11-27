@@ -24,21 +24,75 @@ public class Main {
 		//Transaction to group DB operations
 		Transaction tx = null;		
 		
-		InformePago informe = new InformePago("AER", 50, null, "");
-		InformePago informe2 = new InformePago("BBB", 100, null, "");
-		Aerolinea aerolineaIberia = new Aerolinea("IBR");
-		Aerolinea aerolineaRyanair = new Aerolinea("RA");
-		Aeropuerto aeropuertoLoiu = new Aeropuerto("Loiu");
-	    Aeropuerto aeropuertoMunich = new Aeropuerto("Munich");
-	    Aeropuerto aeropuertoMadrid = new Aeropuerto("Madrid");
-	    Vuelo vuelo = new Vuelo("PAT", aerolineaIberia.getIdAerolinea(), aeropuertoLoiu.getNombreAeropuerto(), aeropuertoMunich.getNombreAeropuerto());
-	    Vuelo vuelo2 = new Vuelo("AOP", aerolineaRyanair.getIdAerolinea(), aeropuertoMadrid.getNombreAeropuerto(), aeropuertoLoiu.getNombreAeropuerto());
-	    Usuario elDani = new Usuario("danaso@opendeusto.es", aeropuertoLoiu);
-	    Usuario elCorno = new Usuario("elCorno@gmail.com", aeropuertoMunich);
+		InformePago informe = new InformePago();
+		informe.setIdInformePago("AER");
+		informe.setCoste(50);
+		informe.setFecha(null);
+		informe.setIdMetodoPago("");
+		
+		InformePago informe2 = new InformePago();
+		informe.setIdInformePago("BBB");
+		informe.setCoste(100);
+		informe.setFecha(null);
+		informe.setIdMetodoPago("");
+		
+		Aerolinea aerolineaIberia = new Aerolinea();
+		aerolineaIberia.setIdAerolinea("IBR");
+		
+		Aerolinea aerolineaRyanair = new Aerolinea();
+		aerolineaRyanair.setIdAerolinea("RA");
+		
+		Aeropuerto aeropuertoLoiu = new Aeropuerto();
+		aeropuertoLoiu.setNombreAeropuerto("Loiu");
+		
+	    Aeropuerto aeropuertoMunich = new Aeropuerto();
+	    aeropuertoMunich.setNombreAeropuerto("Munich");
+	    
+	    Aeropuerto aeropuertoMadrid = new Aeropuerto();
+	    aeropuertoMadrid.setNombreAeropuerto("Madrid");
+	    
+	    Vuelo vuelo = new Vuelo();
+	    vuelo.setIdVuelo("PAT");
+	    vuelo.setIdAerolinea(aerolineaIberia.getIdAerolinea());
+	    vuelo.setNomOrigen(aeropuertoLoiu.getNombreAeropuerto());
+	    vuelo.setNomDestino(aeropuertoMunich.getNombreAeropuerto());
+	       
+	    Vuelo vuelo2 = new Vuelo();
+	    vuelo2.setIdVuelo("AOP");
+	    vuelo2.setIdAerolinea(aerolineaRyanair.getIdAerolinea());
+	    vuelo2.setNomOrigen(aeropuertoMadrid.getNombreAeropuerto());
+	    vuelo2.setNomDestino(aeropuertoLoiu.getNombreAeropuerto());
+	    
+	    Usuario elDani = new Usuario();
+	    elDani.setEmail("danaso@opendeusto.es");
+	    elDani.setPredAirp(aeropuertoLoiu);
+	    
+	    
+	    Usuario elCorno = new Usuario();
+	    elCorno.setEmail("elCorno@gmail.com");
+	    elCorno.setPredAirp(aeropuertoMunich);
+	    
 	    String[] nombres = {"Dani","Ruben","Inaki","Alberto"};
 	    
-	    Reserva reservaDani = new Reserva("888", 4, nombres, new Date(), elDani.getEmail(), vuelo.getIdVuelo(), informe.getIdInformePago());
-	    Reserva reservaCorno = new Reserva("666", 4, nombres, new Date(), elCorno.getEmail(), vuelo2.getIdVuelo(), informe2.getIdInformePago());
+	    Reserva reservaDani = new Reserva();
+	    reservaDani.setFecha(new Date());
+	    reservaDani.setIdInformePago(informe.getIdInformePago());
+	    reservaDani.setIdReserva("888");
+	    reservaDani.setIdVuelo(vuelo.getIdVuelo());
+	    reservaDani.setNombrePasajeros(nombres);
+	    reservaDani.setNumPasajeros(4);
+	    reservaDani.setUsuario(elDani.getEmail());
+	    
+	    
+	    Reserva reservaCorno = new Reserva();
+	    reservaCorno.setFecha(new Date());
+	    reservaCorno.setIdInformePago(informe2.getIdInformePago());
+	    reservaCorno.setIdReserva("666");
+	    reservaCorno.setIdVuelo(vuelo2.getIdVuelo());
+	    reservaCorno.setNombrePasajeros(nombres);
+	    reservaCorno.setNumPasajeros(4);
+	    reservaCorno.setUsuario(elCorno.getEmail());
+	    
 	    
 		//GUARDADO DE DATOS
 		//GUARDADO DE DATOS

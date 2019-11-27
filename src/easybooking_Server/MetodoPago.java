@@ -7,10 +7,9 @@ import javax.jdo.annotations.PrimaryKey;
 public class MetodoPago {
 
 	@PrimaryKey
-	String idMetPago = "";
+	private String idMetPago = "";
 	
-	public MetodoPago(String idMetPago) {
-		this.idMetPago = idMetPago;
+	public MetodoPago() {
 	}
 
 	public String getIdMetPago() {

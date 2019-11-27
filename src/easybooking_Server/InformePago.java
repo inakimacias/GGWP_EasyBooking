@@ -10,20 +10,16 @@ import javax.jdo.annotations.PrimaryKey;
 public class InformePago {
 	
 	@PrimaryKey
-	String idInformePago = "";
-	double coste = 0;
-	Date fecha = null;
+	private String idInformePago = "";
+	private double coste = 0;
+	private Date fecha = null;
 	
 	@ForeignKey
 	String idMetodoPago = null;
 	
 	
 
-	public InformePago(String idInformePago, double coste, Date fecha, String idMetodoPago) {
-		this.idInformePago = idInformePago;
-		this.coste = coste;
-		this.fecha = fecha;
-		this.idMetodoPago = idMetodoPago;
+	public InformePago() {
 	}
 
 	public double getCoste() {

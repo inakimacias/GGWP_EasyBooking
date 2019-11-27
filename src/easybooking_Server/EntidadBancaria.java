@@ -7,13 +7,11 @@ import javax.jdo.annotations.PrimaryKey;
 public class EntidadBancaria {
 
 	@PrimaryKey
-	String idEntBancaria = "";
+	private String idEntBancaria = "";
 	
-	long numTarjeta = 0;
+	private long numTarjeta = 0;
 	
-	public EntidadBancaria(String idEntBancaria, long numTarjeta) {
-		this.idEntBancaria = idEntBancaria;
-		this.numTarjeta = numTarjeta;
+	public EntidadBancaria() {
 	}
 
 	public String getIdEntBancaria() {

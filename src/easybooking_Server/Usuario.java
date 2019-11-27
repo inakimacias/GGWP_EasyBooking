@@ -7,11 +7,17 @@ import javax.jdo.annotations.PrimaryKey;
 public class Usuario {
 	
 	@PrimaryKey
-	String email = null;
-	Aeropuerto predAirp = null;
+	private String email = null;
+	private Aeropuerto predAirp = null;
 	
-	public Usuario(String email, Aeropuerto predAirp) {
-		this.email = email;
+	public Usuario() {
+	}
+
+	public Aeropuerto getPredAirp() {
+		return predAirp;
+	}
+
+	public void setPredAirp(Aeropuerto predAirp) {
 		this.predAirp = predAirp;
 	}
 

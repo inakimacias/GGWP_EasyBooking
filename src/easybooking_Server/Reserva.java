@@ -10,10 +10,10 @@ import javax.jdo.annotations.PrimaryKey;
 public class Reserva {	
 
 	@PrimaryKey
-	String idReserva = null;
-	int numPasajeros = 0;
-	String[] nombrePasajeros = null;
-	Date fecha = null;
+	private String idReserva = null;
+	private int numPasajeros = 0;
+	private String[] nombrePasajeros = null;
+	private Date fecha = null;
 	
 	@ForeignKey
 	String usuario = null;
@@ -22,15 +22,7 @@ public class Reserva {
 	@ForeignKey
 	String idInformePago = null;
 	
-	public Reserva(String idReserva, int numPasajeros, String[] nombrePasajeros, Date fecha, String usuario,
-			String idVuelo, String idInformePago) {
-		this.idReserva = idReserva;
-		this.numPasajeros = numPasajeros;
-		this.nombrePasajeros = nombrePasajeros;
-		this.fecha = fecha;
-		this.usuario = usuario;
-		this.idVuelo = idVuelo;
-		this.idInformePago = idInformePago;
+	public Reserva() {
 	}
 
 	public String getIdReserva() {
@@ -87,8 +79,5 @@ public class Reserva {
 
 	public void setIdInformePago(String idInformePago) {
 		this.idInformePago = idInformePago;
-	}
-	
-	
-	
+	}	
 }

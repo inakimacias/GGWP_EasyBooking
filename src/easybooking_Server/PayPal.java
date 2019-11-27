@@ -7,10 +7,9 @@ import javax.jdo.annotations.PrimaryKey;
 public class PayPal {
 
 	@PrimaryKey
-	String idPaypal = "";
+	private String idPaypal = "";
 	
-	public PayPal(String idPaypal) {
-		this.idPaypal = idPaypal;
+	public PayPal() {
 	}
 
 	public String getIdPaypal() {

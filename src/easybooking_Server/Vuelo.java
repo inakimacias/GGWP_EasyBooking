@@ -8,7 +8,7 @@ import javax.jdo.annotations.PrimaryKey;
 public class Vuelo {
 	
 	@PrimaryKey
-	String idVuelo = null;
+	private String idVuelo = null;
 	
 	@ForeignKey
 	String idAerolinea = null;
@@ -17,11 +17,7 @@ public class Vuelo {
 	@ForeignKey
 	String nomOrigen = null;
 	
-	public Vuelo(String idVuelo, String idAerolinea, String nomDestino, String nomOrigen) {
-		this.idVuelo = idVuelo;
-		this.idAerolinea = idAerolinea;
-		this.nomDestino = nomDestino;
-		this.nomOrigen = nomOrigen;
+	public Vuelo() {
 	}
 
 	public String getIdVuelo() {

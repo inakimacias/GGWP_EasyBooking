@@ -7,10 +7,9 @@ import javax.jdo.annotations.PrimaryKey;
 public class Aerolinea {
 	
 	@PrimaryKey
-	String idAerolinea = null;
+	private String idAerolinea = null;
 	
-	public Aerolinea(String idAerolinea) {
-		this.idAerolinea = idAerolinea;
+	public Aerolinea() {
 	}
 
 	public String getIdAerolinea() {

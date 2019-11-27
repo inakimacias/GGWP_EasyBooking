@@ -7,10 +7,9 @@ import javax.jdo.annotations.PrimaryKey;
 public class Aeropuerto {
 	
 	@PrimaryKey
-	String nombreAeropuerto = null;
+	private String nombreAeropuerto = null;
 	
-	public Aeropuerto(String nombreAeropuerto) {
-		this.nombreAeropuerto = nombreAeropuerto;
+	public Aeropuerto() {
 	}
 
 	public String getNombreAeropuerto() {
