@@ -8,7 +8,6 @@ public class EntidadBancaria {
 
 	@PrimaryKey
 	private String idEntBancaria = "";
-	
 	private long numTarjeta = 0;
 	
 	public EntidadBancaria() {

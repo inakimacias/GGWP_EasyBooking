@@ -13,9 +13,7 @@ public class InformePago {
 	private String idInformePago = "";
 	private double coste = 0;
 	private Date fecha = null;
-	
-	@ForeignKey
-	String idMetodoPago = null;
+	private MetodoPago MetodoPago = null;
 	
 	
 
@@ -46,12 +44,11 @@ public class InformePago {
 		this.idInformePago = idInformePago;
 	}
 
-	public String getIdMetodoPago() {
-		return idMetodoPago;
+	public MetodoPago getMetodoPago() {
+		return MetodoPago;
 	}
 
-	public void setIdMetodoPago(String idMetodoPago) {
-		this.idMetodoPago = idMetodoPago;
+	public void setMetodoPago(MetodoPago metodoPago) {
+		MetodoPago = metodoPago;
 	}
-
 }

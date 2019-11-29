@@ -24,17 +24,21 @@ public class Main {
 		//Transaction to group DB operations
 		Transaction tx = null;		
 		
+		MetodoPago metodoPago = new MetodoPago();
+		metodoPago.setIdMetPago("");
+		
+		
 		InformePago informe = new InformePago();
 		informe.setIdInformePago("AER");
 		informe.setCoste(50);
 		informe.setFecha(null);
-		informe.setIdMetodoPago("");
+		informe.setMetodoPago(metodoPago);
 		
 		InformePago informe2 = new InformePago();
 		informe.setIdInformePago("BBB");
 		informe.setCoste(100);
 		informe.setFecha(null);
-		informe.setIdMetodoPago("");
+		informe.setMetodoPago(metodoPago);
 		
 		Aerolinea aerolineaIberia = new Aerolinea();
 		aerolineaIberia.setIdAerolinea("IBR");
@@ -53,15 +57,15 @@ public class Main {
 	    
 	    Vuelo vuelo = new Vuelo();
 	    vuelo.setIdVuelo("PAT");
-	    vuelo.setIdAerolinea(aerolineaIberia.getIdAerolinea());
-	    vuelo.setNomOrigen(aeropuertoLoiu.getNombreAeropuerto());
-	    vuelo.setNomDestino(aeropuertoMunich.getNombreAeropuerto());
+	    vuelo.setAerolinea(aerolineaIberia);
+	    vuelo.setAeropiuertoOrigen(aeropuertoLoiu);
+	    vuelo.setAeropuertoDestino(aeropuertoMunich);
 	       
 	    Vuelo vuelo2 = new Vuelo();
 	    vuelo2.setIdVuelo("AOP");
-	    vuelo2.setIdAerolinea(aerolineaRyanair.getIdAerolinea());
-	    vuelo2.setNomOrigen(aeropuertoMadrid.getNombreAeropuerto());
-	    vuelo2.setNomDestino(aeropuertoLoiu.getNombreAeropuerto());
+	    vuelo2.setAerolinea(aerolineaRyanair);
+	    vuelo2.setAeropiuertoOrigen(aeropuertoMadrid);
+	    vuelo2.setAeropuertoDestino(aeropuertoLoiu);
 	    
 	    Usuario elDani = new Usuario();
 	    elDani.setEmail("danaso@opendeusto.es");
@@ -76,22 +80,22 @@ public class Main {
 	    
 	    Reserva reservaDani = new Reserva();
 	    reservaDani.setFecha(new Date());
-	    reservaDani.setIdInformePago(informe.getIdInformePago());
+	    reservaDani.setInformePago(informe);
 	    reservaDani.setIdReserva("888");
-	    reservaDani.setIdVuelo(vuelo.getIdVuelo());
+	    reservaDani.setVuelo(vuelo);
 	    reservaDani.setNombrePasajeros(nombres);
 	    reservaDani.setNumPasajeros(4);
-	    reservaDani.setUsuario(elDani.getEmail());
+	    reservaDani.setUsuario(elDani);
 	    
 	    
 	    Reserva reservaCorno = new Reserva();
 	    reservaCorno.setFecha(new Date());
-	    reservaCorno.setIdInformePago(informe2.getIdInformePago());
+	    reservaCorno.setInformePago(informe2);
 	    reservaCorno.setIdReserva("666");
-	    reservaCorno.setIdVuelo(vuelo2.getIdVuelo());
+	    reservaCorno.setVuelo(vuelo2);
 	    reservaCorno.setNombrePasajeros(nombres);
 	    reservaCorno.setNumPasajeros(4);
-	    reservaCorno.setUsuario(elCorno.getEmail());
+	    reservaCorno.setUsuario(elCorno);
 	    
 	    
 		//GUARDADO DE DATOS

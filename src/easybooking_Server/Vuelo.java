@@ -10,12 +10,9 @@ public class Vuelo {
 	@PrimaryKey
 	private String idVuelo = null;
 	
-	@ForeignKey
-	String idAerolinea = null;
-	@ForeignKey
-	String nomDestino = null;
-	@ForeignKey
-	String nomOrigen = null;
+	private Aerolinea Aerolinea;
+	private Aeropuerto aeropuertoDestino;
+	private Aeropuerto aeropiuertoOrigen;
 	
 	public Vuelo() {
 	}
@@ -28,30 +25,27 @@ public class Vuelo {
 		this.idVuelo = idVuelo;
 	}
 
-	public String getIdAerolinea() {
-		return idAerolinea;
+	public Aerolinea getAerolinea() {
+		return Aerolinea;
 	}
 
-	public void setIdAerolinea(String idAerolinea) {
-		this.idAerolinea = idAerolinea;
+	public void setAerolinea(Aerolinea aerolinea) {
+		Aerolinea = aerolinea;
 	}
 
-	public String getNomDestino() {
-		return nomDestino;
+	public Aeropuerto getAeropuertoDestino() {
+		return aeropuertoDestino;
 	}
 
-	public void setNomDestino(String nomDestino) {
-		this.nomDestino = nomDestino;
+	public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
+		this.aeropuertoDestino = aeropuertoDestino;
 	}
 
-	public String getNomOrigen() {
-		return nomOrigen;
+	public Aeropuerto getAeropiuertoOrigen() {
+		return aeropiuertoOrigen;
 	}
 
-	public void setNomOrigen(String nomOrigen) {
-		this.nomOrigen = nomOrigen;
+	public void setAeropiuertoOrigen(Aeropuerto aeropiuertoOrigen) {
+		this.aeropiuertoOrigen = aeropiuertoOrigen;
 	}
-
-	
-
 }

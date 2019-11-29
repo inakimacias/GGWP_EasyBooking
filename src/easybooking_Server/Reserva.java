@@ -15,12 +15,9 @@ public class Reserva {
 	private String[] nombrePasajeros = null;
 	private Date fecha = null;
 	
-	@ForeignKey
-	String usuario = null;
-	@ForeignKey
-	String idVuelo = null;
-	@ForeignKey
-	String idInformePago = null;
+	private Usuario usuario;
+	private Vuelo vuelo;
+	private InformePago informePago;
 	
 	public Reserva() {
 	}
@@ -57,27 +54,27 @@ public class Reserva {
 		this.fecha = fecha;
 	}
 
-	public String getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(String usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
-	public String getIdVuelo() {
-		return idVuelo;
+	public Vuelo getVuelo() {
+		return vuelo;
 	}
 
-	public void setIdVuelo(String idVuelo) {
-		this.idVuelo = idVuelo;
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
 	}
 
-	public String getIdInformePago() {
-		return idInformePago;
+	public InformePago getInformePago() {
+		return informePago;
 	}
 
-	public void setIdInformePago(String idInformePago) {
-		this.idInformePago = idInformePago;
-	}	
+	public void setInformePago(InformePago informePago) {
+		this.informePago = informePago;
+	}
 }
