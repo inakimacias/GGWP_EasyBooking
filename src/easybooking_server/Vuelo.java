@@ -1,4 +1,4 @@
-package easybooking_Server;
+package easybooking_server;
 
 import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.PersistenceCapable;
