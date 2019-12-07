@@ -13,7 +13,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 public class Main {
-
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
 		final Logger LOGGER = Logger.getLogger("Logger");
@@ -23,10 +22,9 @@ public class Main {
 		PersistenceManager pm = null;
 		//Transaction to group DB operations
 		Transaction tx = null;		
-		
+
 		MetodoPago metodoPago1 = new MetodoPago();
 		metodoPago1.setIdMetPago("1");
-		
 		MetodoPago metodoPago2 = new MetodoPago();
 		metodoPago2.setIdMetPago("2");
 		
