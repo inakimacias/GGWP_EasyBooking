@@ -1,4 +1,4 @@
-package easybooking_server;
+package jdo;
 
 import java.util.Date;
 import java.util.List;

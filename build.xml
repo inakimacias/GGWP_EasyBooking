@@ -1,4 +1,4 @@
-<project name="GGWP_EasyBooking" default="4.run-example" basedir=".">
+<project name="GGWP_EasyBookingServer" default="4.run-example" basedir=".">
     <property name="src.dir" location="src"/>
     <property name="bin.dir" location="bin"/>
 	<property name="lib.dir" location="lib"/>
@@ -43,7 +43,7 @@
     </target>
 	
 	<target name="4.run-example" description="Runs a local test of the Server">
-        <java classname="easybooking_server.Main" classpathref="classpath" fork="true">
+        <java classname="jdo.Main" classpathref="classpath" fork="true">
         	<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
 		</java>
     </target>
