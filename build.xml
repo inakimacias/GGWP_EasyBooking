@@ -43,7 +43,7 @@
     </target>
 	
 	<target name="4.run-example" description="Runs a local test of the Server">
-        <java classname="easybooking_Server.Main" classpathref="classpath" fork="true">
+        <java classname="easybooking_server.Main" classpathref="classpath" fork="true">
         	<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
 		</java>
     </target>

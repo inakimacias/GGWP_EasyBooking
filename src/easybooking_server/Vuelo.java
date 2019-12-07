@@ -1,6 +1,5 @@
 package easybooking_server;
 
-import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 

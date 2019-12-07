@@ -24,21 +24,23 @@ public class Main {
 		//Transaction to group DB operations
 		Transaction tx = null;		
 		
-		MetodoPago metodoPago = new MetodoPago();
-		metodoPago.setIdMetPago("");
+		MetodoPago metodoPago1 = new MetodoPago();
+		metodoPago1.setIdMetPago("1");
 		
+		MetodoPago metodoPago2 = new MetodoPago();
+		metodoPago2.setIdMetPago("2");
 		
 		InformePago informe = new InformePago();
 		informe.setIdInformePago("AER");
 		informe.setCoste(50);
 		informe.setFecha(null);
-		informe.setMetodoPago(metodoPago);
+		informe.setMetodoPago(metodoPago1);
 		
 		InformePago informe2 = new InformePago();
-		informe.setIdInformePago("BBB");
-		informe.setCoste(100);
-		informe.setFecha(null);
-		informe.setMetodoPago(metodoPago);
+		informe2.setIdInformePago("BBB");
+		informe2.setCoste(100);
+		informe2.setFecha(null);
+		informe2.setMetodoPago(metodoPago2);
 		
 		Aerolinea aerolineaIberia = new Aerolinea();
 		aerolineaIberia.setIdAerolinea("IBR");
@@ -102,12 +104,9 @@ public class Main {
 		//GUARDADO DE DATOS
 		//GUARDADO DE DATOS
 		//GUARDADO DE DATOS
-		try {			
-			//Get the Persistence Manager
+		try {
 			pm = pmf.getPersistenceManager();
-			//Obtain the current transaction
 			tx = pm.currentTransaction();	
-			
 			tx.begin();
 			
 			pm.makePersistent(elDani);
@@ -124,37 +123,28 @@ public class Main {
 			pm.makePersistent(reservaCorno);
 			
 			tx.commit();
-			
-			LOGGER.info("- Datos guardados en BD");
 		} catch (Exception ex) {
 			LOGGER.error("Error guardando datos " + ex.getMessage());
 		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
+			if (tx != null && tx.isActive()) tx.rollback();
+			if (pm != null && !pm.isClosed()) pm.close();
 		}
 		
 		//SELECCIONAR DATOS
 		//SELECCIONAR DATOS
 		//SELECCIONAR DATOS
 		//SELECCIONAR DATOS
-		try {	
-			LOGGER.info("- Seleccionando aeropuertos usando 'Query'...");
-			//Get the Persistence Manager
+		try {
 			pm = pmf.getPersistenceManager();
-			//Obtain the current transaction
-			tx = pm.currentTransaction();		
-			//Start the transaction
+			tx = pm.currentTransaction();
 			tx.begin();
 
-			Query<Aeropuerto> query = pm.newQuery(Aeropuerto.class);
-			Query<Usuario> query1 = pm.newQuery(Usuario.class);
-			Query<Aerolinea> query2 = pm.newQuery(Aerolinea.class);
-			
+			@SuppressWarnings("unchecked")
+			Query<Aeropuerto> query = pm.newQuery("SELECT FROM "+Aeropuerto.class.getName());
+			@SuppressWarnings("unchecked")
+			Query<Usuario> query1 = pm.newQuery("SELECT FROM "+Usuario.class.getName());
+			@SuppressWarnings("unchecked")
+			Query<Aerolinea> query2 = pm.newQuery("SELECT FROM "+Aerolinea.class.getName());
 			@SuppressWarnings("unchecked")
 			List<Aeropuerto> aeropuertos = (List<Aeropuerto>) query.execute();
 			@SuppressWarnings("unchecked")
@@ -162,34 +152,20 @@ public class Main {
 			@SuppressWarnings("unchecked")
 			List<Aerolinea> aerolineas = (List<Aerolinea>) query2.execute();
 
-			//End the transaction
 			tx.commit();
 			
 			LOGGER.info(" - Aeropuertos guardados en la BD:");
-			for (Aeropuerto aeropuerto : aeropuertos) {
-				LOGGER.info("  -> " + aeropuerto.getNombreAeropuerto());
-			}
-			
+			for (Aeropuerto aeropuerto : aeropuertos) LOGGER.info("  -> " + aeropuerto.getNombreAeropuerto());
 			LOGGER.info(" - Usuarios guardados en la BD:");
-			for (Usuario usuario : usuarios) {
-				LOGGER.info("  -> " + usuario.getEmail());
-			}
-			
+			for (Usuario usuario : usuarios) LOGGER.info("  -> " + usuario.getEmail());
 			LOGGER.info(" - Aerolineas en la BD:");
-			for (Aerolinea aerolinea : aerolineas) {
-				LOGGER.info("  -> " + aerolinea.getIdAerolinea());
-			}
+			for (Aerolinea aerolinea : aerolineas) LOGGER.info("  -> " + aerolinea.getIdAerolinea());
 			
 		} catch (Exception ex) {
 			LOGGER.error(" $ Error seleccionando aeropuertos usando 'Query': " + ex.getMessage());
 		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
+			if (tx != null && tx.isActive()) tx.rollback();
+			if (pm != null && !pm.isClosed()) pm.close();
 		}
 
 		//BORRADO DE DATOS
@@ -197,31 +173,23 @@ public class Main {
 		//BORRADO DE DATOS
 		//BORRADO DE DATOS
 		try {			
-			//Get the Persistence Manager
 			pm = pmf.getPersistenceManager();
-			//Obtain the current transaction
-			tx = pm.currentTransaction();		
-			//Start the transaction
+			tx = pm.currentTransaction();
 			tx.begin();
 
-			Query<Usuario> query = pm.newQuery(Usuario.class);
+			@SuppressWarnings("unchecked")
+			Query<Reserva> query = pm.newQuery("SELECT FROM "+Reserva.class.getName());
+			for(Reserva u : query.executeList()) {
+				LOGGER.info(" - Borrando de la BD: "+u.toString());
+				pm.deletePersistent(u);
+			}
 			
-			LOGGER.info("");
-			LOGGER.info(" - Borrando todos los usuarios de BD");
-			LOGGER.info(query.deletePersistentAll() + "' usuarios borrados de la BD.");
-			//End the transaction
 			tx.commit();
-			LOGGER.info(" - Datos borrados");
 		} catch (Exception ex) {
 			LOGGER.error(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
 		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
+			if (tx != null && tx.isActive()) tx.rollback();
+			if (pm != null && !pm.isClosed()) pm.close();
 		}
 		
 		//ACTUALIZAR DATOS
@@ -229,32 +197,21 @@ public class Main {
 		//ACTUALIZAR DATOS
 		//ACTUALIZAR DATOS
 		try {			
-			//Get the Persistence Manager
 			pm = pmf.getPersistenceManager();
-			//Obtain the current transaction
-			tx = pm.currentTransaction();		
-			//Start the transaction
+			tx = pm.currentTransaction();	
 			tx.begin();
 
 			LOGGER.info("");
 			LOGGER.info(" - Cambiando codigo aerolinea Iberia de IBR  -> AEO ");
 			aerolineaIberia.setIdAerolinea("AEO");
-			
 			pm.makePersistent(aerolineaIberia);
 			
-			//End the transaction
 			tx.commit();
-			LOGGER.info(" - Datos actualizados");
 		} catch (Exception ex) {
 			LOGGER.error(" $ Error updating  'IBR -> AEO': " + ex.getMessage());
 		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
+			if (tx != null && tx.isActive()) tx.rollback();
+			if (pm != null && !pm.isClosed()) pm.close();
 		}
 
 	}
