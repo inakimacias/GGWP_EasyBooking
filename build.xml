@@ -1,9 +1,15 @@
+  
 <project name="GGWP_EasyBookingServer" default="4.run-example" basedir=".">
     <property name="src.dir" location="src"/>
     <property name="bin.dir" location="bin"/>
 	<property name="lib.dir" location="lib"/>
 	<property name="dist.dir" location="dist"/>
 	<property name="resources.dir" location="resources"/>
+	
+	<property name="server.IP" value="127.0.0.1"/>
+	<property name="FACEBOOK_SERVER.port" value="8002"/> 
+	<property name="GOOGLE_SERVER.port" value="8002"/> 
+	<property name="message" value="Socket test example!"/>	
 	
     <path id="classpath">
         <fileset dir="${lib.dir}">
@@ -17,7 +23,7 @@
     	<delete dir="${bin.dir}"/>
     	<mkdir dir="${bin.dir}"/>
     	
-    	<javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="false" fork="true">
+    	<javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="false" fork="true" deprecation="true">
             <include name="**/*.java"/>
          </javac>
     </target>
@@ -57,4 +63,21 @@
             </fileset>
         </schematool>
 	</target>
+	
+	<target name="CONNECT_GOOGLE" depends="1.compile" description="Tries a connection with google server">
+		<java classname="gateways.GoogleGw" classpathref="classpath" fork="true">
+			<arg value="${server.IP}"/> 
+			<arg value="${GOOGLE_SERVER.port}"/> 
+			<arg value="${message}"/> 
+		</java>
+	</target>
+	
+	<target name="CONNECT_FACEBOOK" depends="1.compile" description="Tries a connection with facebook server">
+		<java classname="gateways.GoogleGw" classpathref="classpath" fork="true">
+			<arg value="${server.IP}"/> 
+			<arg value="${FACEBOOK_SERVER.port}"/> 
+			<arg value="${message}"/> 
+		</java>
+	</target>
+	
 </project>
