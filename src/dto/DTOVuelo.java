@@ -1,15 +1,17 @@
 package dto;
 
+import java.util.Date;
+
 import jdo.Aerolinea;
 import jdo.Aeropuerto;
 
 public class DTOVuelo {
 
-private String idVuelo = null;
-	
-	private Aerolinea Aerolinea;
-	private Aeropuerto aeropuertoDestino;
-	private Aeropuerto aeropiuertoOrigen;
+	private String idVuelo = null;
+	private Date salidaFecha;
+	private Date llegadaFecha;
+	private int asientosTotales;
+	private int asientosVacantes;
 	
 	
 	public String getIdVuelo() {
@@ -18,22 +20,29 @@ private String idVuelo = null;
 	public void setIdVuelo(String idVuelo) {
 		this.idVuelo = idVuelo;
 	}
-	public Aerolinea getAerolinea() {
-		return Aerolinea;
+	public Date getSalidaFecha() {
+		return salidaFecha;
 	}
-	public void setAerolinea(Aerolinea aerolinea) {
-		Aerolinea = aerolinea;
+	public void setSalidaFecha(Date salidaFecha) {
+		this.salidaFecha = salidaFecha;
 	}
-	public Aeropuerto getAeropuertoDestino() {
-		return aeropuertoDestino;
+	public Date getLlegadaFecha() {
+		return llegadaFecha;
 	}
-	public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
-		this.aeropuertoDestino = aeropuertoDestino;
+	public void setLlegadaFecha(Date llegadaFecha) {
+		this.llegadaFecha = llegadaFecha;
 	}
-	public Aeropuerto getAeropiuertoOrigen() {
-		return aeropiuertoOrigen;
+	public int getAsientosTotales() {
+		return asientosTotales;
 	}
-	public void setAeropiuertoOrigen(Aeropuerto aeropiuertoOrigen) {
-		this.aeropiuertoOrigen = aeropiuertoOrigen;
-	}	
+	public void setAsientosTotales(int asientosTotales) {
+		this.asientosTotales = asientosTotales;
+	}
+	public int getAsientosVacantes() {
+		return asientosVacantes;
+	}
+	public void setAsientosVacantes(int asientosVacantes) {
+		this.asientosVacantes = asientosVacantes;
+	}
+	
 }
