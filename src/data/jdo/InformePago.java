@@ -15,7 +15,6 @@ public class InformePago {
 	private MetodoPago MetodoPago = null;
 	
 	
-
 	public InformePago() {
 	}
 
