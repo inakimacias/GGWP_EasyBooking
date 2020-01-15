@@ -23,6 +23,8 @@ res;id;numero
 
 Paypal
 8006
+pay;mail;change
 
 Entidad Bancaria
 8007
+pay;account;change
