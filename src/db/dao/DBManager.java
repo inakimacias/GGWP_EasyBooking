@@ -40,15 +40,19 @@ public class DBManager {
 		//Create Sample data
 		Usuario dani = new Usuario();
 		dani.setEmail("daniel@gmail.com");
+		dani.setPassword("123");
 						
 		Usuario inaki = new Usuario();
 		inaki.setEmail("inaki@gmail.com");
+		inaki.setPassword("123");
 		
 		Usuario ruben = new Usuario();
 		ruben.setEmail("ruben@gmail.com");
+		ruben.setPassword("123");
 		
 		Usuario alberto = new Usuario();
 		alberto.setEmail("alberto@gmail.com");
+		alberto.setPassword("123");
 		
 		try {
 			//Store users in DB
