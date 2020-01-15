@@ -4,8 +4,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import dto.DTOUsuario;
-import dto.DTOVuelo;
+import data.dto.DTOUsuario;
+import data.dto.DTOVuelo;
+
+
 
 public interface IEasyBookingManager extends Remote {
 
