@@ -12,7 +12,9 @@ import javax.jdo.Transaction;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
+import data.jdo.Reserva;
 import data.jdo.Usuario;
+import data.jdo.Vuelo;
 
 public class DBManager {
 	
@@ -264,4 +266,57 @@ public class DBManager {
 		}
 		return user;
 	}
+	
+	public Vuelo getVuelo(String idVuelo) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		pm.getFetchPlan().setMaxFetchDepth(4);
+		Transaction tx = pm.currentTransaction();
+		Vuelo vuelo = null; 
+
+		try {
+			System.out.println("  * Querying a Vuelo by idVuelo: " + idVuelo);
+			tx.begin();
+			
+			Query<?> query = pm.newQuery("SELECT FROM " + Vuelo.class.getName() + " WHERE idVuelo == '" + idVuelo + "'");
+			query.setUnique(true);
+			vuelo = (Vuelo) query.execute();
+			
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("  $ Error querying a Vuelo: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+		return vuelo;
+	}
+	
+	public Reserva getReserva(String idReserva) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		pm.getFetchPlan().setMaxFetchDepth(4);
+		Transaction tx = pm.currentTransaction();
+		Reserva reserva = null; 
+
+		try {
+			System.out.println("  * Querying a Reserva by idReserva: " + idReserva);
+			tx.begin();
+			
+			Query<?> query = pm.newQuery("SELECT FROM " + Vuelo.class.getName() + " WHERE idReserva == '" + idReserva + "'");
+			query.setUnique(true);
+			reserva = (Reserva) query.execute();
+			
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("  $ Error querying a Reserva: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+		return reserva;
+	}
+	
 }
