@@ -15,8 +15,9 @@ import org.apache.log4j.Logger;
 import data.jdo.Usuario;
 
 public class DBManager {
+	
 	private static Logger LOGGER;
-	private static DBManager instance = null;
+	private static DBManager instance;
 	private PersistenceManagerFactory pmf = null;
 	
 	public DBManager() {

@@ -7,7 +7,7 @@ import data.dto.DTOUsuario;
 import data.dto.DTOVuelo;
 import data.jdo.Usuario;
 
-public class EasyBookingManager {
+public class EasyBookingManager implements IEasyBookingManager {
 
 	private static EasyBookingManager instance;
 	public Usuario state;
