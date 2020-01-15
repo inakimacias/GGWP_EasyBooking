@@ -1,17 +1,25 @@
 Facebook
 8001
+val;nickname;password
 
 Google
 8002
+val;email;password
 
 Iberia
 8003
+bus;origen;destino
+res;id;numero
 
 Ryannair
 8004
+bus;origen;destino
+res;id;numero
 
 Vueling
 8005
+bus;origen;destino
+res;id;numero
 
 Paypal
 8006
