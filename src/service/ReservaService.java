@@ -1,7 +1,12 @@
 package service;
 
-import dao.DBManager;
+import java.util.ArrayList;
+
+import gateways.IAerolineaGw;
+import gateways.IPagoGw;
 import jdo.Reserva;
+import jdo.Usuario;
+import jdo.Vuelo;
 
 public class ReservaService {
 	
@@ -17,11 +22,12 @@ public class ReservaService {
 		return instance;
 	}
 	
-	public Reserva reservar(String idReserva) {
-		Reserva reserva = DBManager.getInstance().getReserva(idReserva);
-		
-		return reserva;
-		
+	public void reservar(Usuario usuario, Vuelo vuelo, ArrayList<String> nombres, String authType, String idCuenta) {
+		IAerolineaGw agw = Factory.getInstance().createAerolineaGw(vuelo.getAerolinea());
+		IPagoGw pgw = Factory.getInstance().createPagoGw(authType);
+		agw.reservarVuelo(vuelo.getIdVuelo(), nombres.size());
+		pgw.pagar(idCuenta, vuelo.getPrecio()*nombres.size());
+		Reserva r = new Reserva();
 	}
 
 }

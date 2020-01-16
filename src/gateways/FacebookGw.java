@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import dao.DBManager;
-import jdo.Usuario;
-
 public class FacebookGw implements ILoginGw{
 	String serverIP;
 	int serverPort;
@@ -24,8 +21,8 @@ public class FacebookGw implements ILoginGw{
 		serverPort = 8001;
 	}
 	
-	public Usuario autenticar(String nick, String password) {
-		Usuario u = null;
+	public boolean autenticar(String nick, String password) {
+		boolean b = false;
 		try (Socket tcpSocket = new Socket(serverIP, serverPort);
 		DataInputStream in = new DataInputStream(tcpSocket.getInputStream());
 		DataOutputStream out = new DataOutputStream(tcpSocket.getOutputStream())){
@@ -36,8 +33,9 @@ public class FacebookGw implements ILoginGw{
 			String data = in.readUTF();			
 			System.out.println(" - TCPSocketClient: Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
 			
-			String userMail = data.split(";")[1];
-			u = DBManager.getInstance().getUser(userMail);
+			if(data.split(";")[0]=="true") {
+				b=true;
+			}
 		} catch (UnknownHostException e) {
 			System.err.println("# TCPSocketClient: Socket error: " + e.getMessage());
 		} catch (EOFException e) {
@@ -45,6 +43,6 @@ public class FacebookGw implements ILoginGw{
 		} catch (IOException e) {
 			System.err.println("# TCPSocketClient: IO error: " + e.getMessage());
 		}
-		return u;
+		return b;
 	}
 }

@@ -39,8 +39,8 @@ public class EasyBookingManager extends UnicastRemoteObject implements IEasyBook
 	
 		return null;
 	}
+	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, ArrayList<String> nombres, String authType, String idCuenta)
+		throws RemoteException {
 	
-public void reservar(DTOUsuario usuario, DTOVuelo vuelo, ArrayList<String> nombres, String idCuenta, int coste) {
-		
 	}
 }
