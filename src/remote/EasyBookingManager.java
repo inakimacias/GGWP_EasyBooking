@@ -1,16 +1,19 @@
 package remote;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import dto.DTOUsuario;
 import dto.DTOVuelo;
-import jdo.Usuario;
 
-public class EasyBookingManager implements IEasyBookingManager {
+public class EasyBookingManager extends UnicastRemoteObject implements IEasyBookingManager {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static EasyBookingManager instance;
-	public Usuario state;
 	
 	private EasyBookingManager() throws RemoteException {
 		super();		
@@ -26,19 +29,21 @@ public class EasyBookingManager implements IEasyBookingManager {
 		}
 		return instance;
 	}
-	
-	public boolean login(String email, String password) {		
-		// this.state = LoginService.getInstance().login(email, password);
-		
-		return state != null;
-	}
-	
-	public void buscarVuelo(String nombreOrigen, String nombreDestino) {
+	public void registrarse(String id, String password, String authType) throws RemoteException {
 		
 	}
-	
-	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, ArrayList<String> nombres, String idCuenta, int coste) {
+
+	public boolean login(String email, String password, String authType) throws RemoteException {
 		
+		return false;
+	}
+
+	public ArrayList<DTOVuelo> buscarVuelo(String nombreOrigen, String nombreDestino) throws RemoteException {
+	
+		return null;
 	}
 	
+public void reservar(DTOUsuario usuario, DTOVuelo vuelo, ArrayList<String> nombres, String idCuenta, int coste) {
+		
+	}
 }
