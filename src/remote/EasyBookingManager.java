@@ -3,9 +3,9 @@ package remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import data.dto.DTOUsuario;
-import data.dto.DTOVuelo;
-import data.jdo.Usuario;
+import dto.DTOUsuario;
+import dto.DTOVuelo;
+import jdo.Usuario;
 
 public class EasyBookingManager implements IEasyBookingManager {
 

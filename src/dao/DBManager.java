@@ -1,4 +1,4 @@
-package db.dao;
+package dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,9 @@ import javax.jdo.Transaction;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
-import data.jdo.Reserva;
-import data.jdo.Usuario;
-import data.jdo.Vuelo;
+import jdo.Reserva;
+import jdo.Usuario;
+import jdo.Vuelo;
 
 public class DBManager {
 	
@@ -130,34 +130,6 @@ public class DBManager {
 			if (tx != null && tx.isActive()) tx.rollback();
 			if (pm != null && !pm.isClosed()) pm.close();
 		}
-	}
-	
-	public boolean validarUsuario(String email, String password) {
-		boolean existeUser=false;
-		System.out.println("CACA");
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		try {
-			LOGGER.info("VALIDANDO "+email+" ; "+password);
-			
-			tx.begin();
-			
-			@SuppressWarnings("unchecked")
-			Query<Usuario> query1 = pm.newQuery("SELECT FROM "+Usuario.class.getName());
-			for(Usuario user : query1.executeList()) {
-				if(user.getEmail()==email) {
-						existeUser=true;
-				}
-			}
-			
-			tx.commit();
-		} catch (Exception ex) {
-			LOGGER.error(" $ Error validando usuarios usando 'Query': " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) tx.rollback();
-			if (pm != null && !pm.isClosed()) pm.close();
-		}
-		return existeUser;
 	}
 	
 	public void actualizarPassword(String email, String newPass) {

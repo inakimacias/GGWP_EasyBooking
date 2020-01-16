@@ -1,13 +1,10 @@
-package data.dto;
-
-import java.util.Date;
+package dto;
 
 public class DTOReserva {
 
-	private String idReserva = null;
-	private int numPasajeros = 0;
-	private Date fecha = null;
-	
+	private String idReserva;
+	private int numPasajeros;
+	private String fecha;
 	
 	public String getIdReserva() {
 		return idReserva;
@@ -21,12 +18,13 @@ public class DTOReserva {
 	public void setNumPasajeros(int numPasajeros) {
 		this.numPasajeros = numPasajeros;
 	}
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	
 	
 	
 }

@@ -4,8 +4,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import data.dto.DTOUsuario;
-import data.dto.DTOVuelo;
+import dto.DTOUsuario;
+import dto.DTOVuelo;
 
 
 

@@ -1,7 +1,7 @@
 package service;
 
-import data.jdo.Reserva;
-import db.dao.DBManager;
+import dao.DBManager;
+import jdo.Reserva;
 
 public class ReservaService {
 	

@@ -1,7 +1,7 @@
 package service;
 
-import data.jdo.Usuario;
-import db.dao.DBManager;
+import dao.DBManager;
+import jdo.Usuario;
 
 public class LoginService {
 	

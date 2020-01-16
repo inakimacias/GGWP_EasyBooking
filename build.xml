@@ -49,7 +49,7 @@
     </target>
 	
 	<target name="4.run-example" description="Runs a local test of the Server">
-        <java classname="jdo.Main" classpathref="classpath" fork="true">
+        <java classname="gateways.Test" classpathref="classpath" fork="true">
         	<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
 		</java>
     </target>
@@ -73,7 +73,7 @@
 	</target>
 	
 	<target name="CONNECT_FACEBOOK" depends="1.compile" description="Tries a connection with facebook server">
-		<java classname="gateways.GoogleGw" classpathref="classpath" fork="true">
+		<java classname="gateways.FacebookGw" classpathref="classpath" fork="true">
 			<arg value="${server.IP}"/> 
 			<arg value="${FACEBOOK_SERVER.port}"/> 
 			<arg value="${message}"/> 

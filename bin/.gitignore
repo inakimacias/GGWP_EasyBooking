@@ -1,11 +1,7 @@
-/dao/
-/dto/
-/gateways/
+/assemblers/
 /jdo/
-/remote/
-/utilities/
-/data/
-/db/
-/server/
-/test/
 /service/
+/dto/
+/remote/
+/dao/
+/gateways/

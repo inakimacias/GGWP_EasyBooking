@@ -1,5 +1,5 @@
 package gateways;
 
-public class IPagoGw {
-
+public interface IPagoGw {
+	public void pagar(String id, double cantidad);
 }

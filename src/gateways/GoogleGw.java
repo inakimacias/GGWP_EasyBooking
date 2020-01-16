@@ -7,43 +7,38 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class GoogleGw {
+import dao.DBManager;
+import jdo.Usuario;
 
-	public static void main(String args[]) {
-		
-		if (args.length < 3) {
-			System.err.println(" # Usage: TCPSocketClient [SERVER IP] [PORT] [MESSAGE]");
-			System.exit(1);
-		}
-		
-		//args[0] = Server IP
-		String serverIP = args[0];
-		//args[1] = Server socket port
-		int serverPort = Integer.parseInt(args[1]);
-		//argrs[2] = Message
-		String message = args[2];
-
-		/**
-		 * NOTE: try-with resources Statement - https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
-		 * Try statement that declares one or more resources. A resource is an object that must be closed after the program is 
-		 * finished with it. The try-with-resources statement ensures that each resource is closed at the end of the statement.
-		 * Any object that implements java.lang.AutoCloseable, which includes all objects which implement java.io.Closeable, 
-		 * can be used as a resource.
-		 */
-
-			//Declaration of the socket to send/receive information to/from the server (an IP and a Port are needed)
+public class GoogleGw implements ILoginGw{
+	
+	String serverIP;
+	int serverPort;
+	private static GoogleGw instance = new GoogleGw();
+	
+	public static GoogleGw getInstance() {
+		return instance;
+	}
+	
+	public GoogleGw() {
+		serverIP = "127.0.0.1";
+		serverPort = 8002;
+	}
+	
+	public Usuario autenticar(String email, String password) {
+		Usuario u = null;
 		try (Socket tcpSocket = new Socket(serverIP, serverPort);
-			 //Streams to send and receive information are created from the Socket
-		     DataInputStream in = new DataInputStream(tcpSocket.getInputStream());
-			 DataOutputStream out = new DataOutputStream(tcpSocket.getOutputStream())){
-			
-			//Send request (a Srting) to the server
+		DataInputStream in = new DataInputStream(tcpSocket.getInputStream());
+		DataOutputStream out = new DataOutputStream(tcpSocket.getOutputStream())){
+			String message = "val;"+email+";"+password;
 			out.writeUTF(message);
 			System.out.println(" - TCPSocketClient: Sent data to '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + message + "'");
 			
-			//Read response (a String) from the server
 			String data = in.readUTF();			
 			System.out.println(" - TCPSocketClient: Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
+			
+			String userMail = data.split(";")[1];
+			u = DBManager.getInstance().getUser(userMail);
 		} catch (UnknownHostException e) {
 			System.err.println("# TCPSocketClient: Socket error: " + e.getMessage());
 		} catch (EOFException e) {
@@ -51,5 +46,7 @@ public class GoogleGw {
 		} catch (IOException e) {
 			System.err.println("# TCPSocketClient: IO error: " + e.getMessage());
 		}
+		return u;
 	}
+	
 }

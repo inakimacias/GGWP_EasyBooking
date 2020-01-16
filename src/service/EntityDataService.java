@@ -1,8 +1,8 @@
 package service;
 
-import data.dto.DTOVuelo;
-import data.utilities.VueloAssembler;
-import db.dao.DBManager;
+import assemblers.VueloAssembler;
+import dao.DBManager;
+import dto.DTOVuelo;
 
 public class EntityDataService {
 
