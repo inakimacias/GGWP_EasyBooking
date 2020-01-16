@@ -1,5 +1,5 @@
   
-<project name="GGWP_EasyBookingServer" default="4.run-example" basedir=".">
+<project name="GGWP_EasyBookingServer" default="5.run-example" basedir=".">
     <property name="src.dir" location="src"/>
     <property name="bin.dir" location="bin"/>
 	<property name="lib.dir" location="lib"/>
@@ -28,7 +28,13 @@
          </javac>
     </target>
 	
-	<target name="2.enhance-classes" depends="1.compile" description="Adds JDO code to the persisten compiled classes">
+	<target name="2.export" depends="1.compile" description="Export classes into a .jar file">
+			<delete dir="${dist.dir}"/>
+			<mkdir dir="${dist.dir}"/>
+			<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/remote/I**.class, **/dto/**.class"/>
+	</target>
+	
+	<target name="3.enhance-classes" depends="1.compile" description="Adds JDO code to the persisten compiled classes">
     	<taskdef name="enhancer" classpathref="classpath" classname="org.datanucleus.enhancer.EnhancerTask"/>
    		<enhancer classpathref="classpath" failonerror="true">
             <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
@@ -38,7 +44,7 @@
    		</enhancer>
     </target>
 
-    <target name="3.create-db-schema" depends="2.enhance-classes" description="Creates DB Schema on the DB Server">
+    <target name="4.create-db-schema" depends="3.enhance-classes" description="Creates DB Schema on the DB Server">
         <taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
     	<schematool mode="create" classpathref="classpath" props="datanucleus.properties" failonerror="true">
             <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
@@ -48,13 +54,13 @@
         </schematool>
     </target>
 	
-	<target name="4.run-example" description="Runs a local test of the Server">
+	<target name="5.run-example" description="Runs a local test of the Server">
         <java classname="gateways.Test" classpathref="classpath" fork="true">
         	<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
 		</java>
     </target>
 	
-	<target name="5.delete-db-schema" depends="2.enhance-classes" description="Drops DB sechema from the DB Server">
+	<target name="6.delete-db-schema" depends="3.enhance-classes" description="Drops DB sechema from the DB Server">
 		<taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
     	<schematool mode="delete" classpathref="classpath" props="datanucleus.properties" failonerror="true">            
     	   	<sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
