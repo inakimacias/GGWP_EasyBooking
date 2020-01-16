@@ -17,14 +17,10 @@ private static LoginService instance;
 		return instance;
 	}
 
-	public Usuario login(String email, String password) {
+	public Usuario login(String email) {
 		Usuario usuario = DBManager.getInstance().getUser(email);
 		
-		if (usuario != null && usuario.chekPassword(password)) {
-			return usuario;
-		} else {
-			return null;
-		}
+		return usuario;
 	}
 
 }

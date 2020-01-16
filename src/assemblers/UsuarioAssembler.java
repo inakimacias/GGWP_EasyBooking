@@ -21,7 +21,6 @@ public class UsuarioAssembler {
 		DTOUsuario dto = new DTOUsuario();
 		
 		dto.setEmail(usuario.getEmail());
-		dto.setPassword(usuario.getPassword());
 		
 		return dto;
 	}
