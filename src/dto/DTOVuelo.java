@@ -10,6 +10,7 @@ public class DTOVuelo {
 	private String aeropuertoDestino;
 	private String aeropuertoOrigen;
 	private int precio;
+	
 	public String getIdVuelo() {
 		return idVuelo;
 	}

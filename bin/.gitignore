@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /assemblers/
 /dao/
 /dto/
@@ -6,3 +7,11 @@
 /remote/
 /server/
 /service/
+=======
+/gateways/
+/remote/
+/server/
+/assemblers/
+/service/
+/dto/
+>>>>>>> branch 'master' of https://github.com/inakimacias/GGWP_EasyBookingServer.git
