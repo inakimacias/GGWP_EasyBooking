@@ -1,6 +1,6 @@
 package service;
 
-import assemblers.VueloAssembler;
+import assemblers.Assembler;
 import dao.DBManager;
 import dto.DTOVuelo;
 
@@ -19,7 +19,7 @@ public class EntityDataService {
 	}
 
 	public DTOVuelo getVuelo(String idVuelo) {
-		return VueloAssembler.getInstance().entityToDTO(DBManager.getInstance().getVuelo(idVuelo));
+		return Assembler.getInstance().assemble(DBManager.getInstance().getVuelo(idVuelo));
 	}
 
 }
