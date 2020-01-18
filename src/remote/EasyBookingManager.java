@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import dto.DTOUsuario;
 import dto.DTOVuelo;
+import jdo.Usuario;
+import service.LoginService;
 
 public class EasyBookingManager extends UnicastRemoteObject implements IEasyBookingManager {
 
@@ -30,9 +32,12 @@ public class EasyBookingManager extends UnicastRemoteObject implements IEasyBook
 		
 	}
 
-	public boolean login(String email, String password, String authType) throws RemoteException {
+	public DTOUsuario login(String email, String password, String authType) throws RemoteException {
+		DTOUsuario usuario = null;
 		
-		return false;
+		usuario = LoginService.getInstance().login(email, password, authType);
+		
+		return usuario;
 	}
 
 	public ArrayList<DTOVuelo> buscarVuelo(String nombreOrigen, String nombreDestino) throws RemoteException {

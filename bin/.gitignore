@@ -1,3 +1,6 @@
+/assemblers/
+/dao/
+/dto/
 /gateways/
 /jdo/
 /remote/

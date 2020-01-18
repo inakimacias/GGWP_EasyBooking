@@ -1,6 +1,8 @@
 package service;
 
+import assemblers.Assembler;
 import dao.DBManager;
+import dto.DTOUsuario;
 import gateways.ILoginGw;
 import jdo.Usuario;
 
@@ -18,11 +20,12 @@ private static LoginService instance;
 		return instance;
 	}
 
-	public Usuario login(String email, String password, String authService) {
-		Usuario usuario = null;
+	public DTOUsuario login(String email, String password, String authService) {
+		DTOUsuario usuario = null;
+		
 		ILoginGw login = Factory.getInstance().createLoginGw(authService);
 		if(login.autenticar(email, password)) {
-			usuario = DBManager.getInstance().getUser(email);
+			usuario = Assembler.getInstance().assemble(DBManager.getInstance().getUser(email));
 		}
 		return usuario;
 	}
