@@ -17,6 +17,25 @@ public class Assembler {
 		dto.setAerPred(usuario.getPredAirp());
 		return dto;
 	}
+	
+	public DTOReserva assemble(Reserva reserva) {
+		DTOReserva dto = new DTOReserva();
+		dto.setIdReserva(reserva.getIdReserva());
+		dto.setNumPasajeros(reserva.getNumPasajeros());
+		dto.setFecha(reserva.getFecha());
+		return dto;
+	}
+	
+	public DTOInformePago assemble(InformePago ip) {
+		DTOInformePago dto = new DTOInformePago();
+		dto.setIdInformePago(ip.getIdInformePago());
+		dto.setIdCuenta(ip.getIdCuenta());
+		dto.setFecha(ip.getFecha());
+		dto.setCoste(ip.getCoste());
+		dto.setMetodoPago(ip.getMetodoPago());
+		return dto;
+	}
+	
 	public DTOVuelo assemble(Vuelo vuelo) {
 		DTOVuelo dto = new DTOVuelo();
 		dto.setIdVuelo(vuelo.getIdVuelo());
@@ -29,20 +48,17 @@ public class Assembler {
 		dto.setPrecio(vuelo.getPrecio());
 		return dto;
 	}
-	public DTOReserva assemble(Reserva reserva) {
-		DTOReserva dto = new DTOReserva();
-		dto.setIdReserva(reserva.getIdReserva());
-		dto.setNumPasajeros(reserva.getNumPasajeros());
-		dto.setFecha(reserva.getFecha());
-		return dto;
-	}
-	public DTOInformePago assemble(InformePago ip) {
-		DTOInformePago dto = new DTOInformePago();
-		dto.setIdInformePago(ip.getIdInformePago());
-		dto.setIdCuenta(ip.getIdCuenta());
-		dto.setFecha(ip.getFecha());
-		dto.setCoste(ip.getCoste());
-		dto.setMetodoPago(ip.getMetodoPago());
-		return dto;
+	
+	public Vuelo getDomainObject(DTOVuelo dtoVuelo) {
+		Vuelo jdo = new Vuelo();
+		jdo.setIdVuelo(dtoVuelo.getIdVuelo());
+		jdo.setSalidaFecha(dtoVuelo.getSalidaFecha());
+		jdo.setLlegadaFecha(dtoVuelo.getLlegadaFecha());
+		jdo.setAsientosVacantes(dtoVuelo.getAsientosVacantes());
+		jdo.setAerolinea(dtoVuelo.getAerolinea());
+		jdo.setAeropuertoOrigen(dtoVuelo.getAeropuertoOrigen());
+		jdo.setAeropuertoDestino(dtoVuelo.getAeropuertoDestino());
+		jdo.setPrecio(dtoVuelo.getPrecio());
+		return jdo;
 	}
 }
