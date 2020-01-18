@@ -18,8 +18,8 @@ public class EntityDataService {
 		return instance;
 	}
 
-	public DTOVuelo getVuelo(String idVuelo) {
-		return Assembler.getInstance().assemble(DBManager.getInstance().getVuelo(idVuelo));
-	}
+//	public DTOVuelo getVuelo(String idVuelo) {
+//		return Assembler.getInstance().assemble(DBManager.getInstance().getVuelo(idVuelo));
+//	}
 
 }
