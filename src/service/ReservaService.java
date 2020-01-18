@@ -3,7 +3,10 @@ package service;
 import java.util.ArrayList;
 import java.util.Date;
 
+import assemblers.Assembler;
 import dao.DBManager;
+import dto.DTOUsuario;
+import dto.DTOVuelo;
 import gateways.IAerolineaGw;
 import gateways.IPagoGw;
 import jdo.InformePago;
@@ -25,7 +28,9 @@ public class ReservaService {
 		return instance;
 	}
 	
-	public void reservar(Usuario usuario, Vuelo vuelo, String nombres, String authType, String idCuenta) {
+	public void reservar(DTOUsuario DTOusuario, DTOVuelo DTOvuelo, String nombres, String authType, String idCuenta) {
+		Usuario usuario = DBManager.getInstance().getUser(DTOusuario.getEmail());
+		Vuelo vuelo = Assembler.getInstance().getDomainObject(DTOvuelo);
 		ArrayList<String> goodData = new ArrayList<String>();
 		Date d = new Date();
 		for(int i = 0; i<nombres.split(";").length; i++) {

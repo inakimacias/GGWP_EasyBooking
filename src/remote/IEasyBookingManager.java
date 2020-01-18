@@ -11,7 +11,7 @@ public interface IEasyBookingManager extends Remote {
 
 	public boolean registrarse(String id, String password, String authType) throws RemoteException;
 	public DTOUsuario login(String email, String password, String authType) throws RemoteException;
-	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, ArrayList<String> nombres, String authType, String idCuenta) throws RemoteException;
+	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, String nombres, String authType, String idCuenta) throws RemoteException;
 	public ArrayList<DTOVuelo> buscarVuelo(String nombreOrigen, String nombreDestino) throws RemoteException;
 
 }
