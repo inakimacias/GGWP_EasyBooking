@@ -31,8 +31,8 @@ public class ReservaService {
 	public void reservar(DTOUsuario DTOusuario, DTOVuelo DTOvuelo, String nombres, String authType, String idCuenta) {
 		Usuario usuario = DBManager.getInstance().getUser(DTOusuario.getEmail());
 		Vuelo vuelo = Assembler.getInstance().getDomainObject(DTOvuelo);
-		ArrayList<String> goodData = new ArrayList<String>();
 		Date d = new Date();
+		ArrayList<String> goodData = new ArrayList<String>();
 		for(int i = 0; i<nombres.split(";").length; i++) {
 			goodData.add(nombres.split(";")[i]);
 		}
