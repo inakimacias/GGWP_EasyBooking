@@ -8,7 +8,6 @@ public class Usuario {
 	
 	@PrimaryKey
 	private String email;
-	private String predAirp;
 	
 	public Usuario() {
 	}
@@ -20,15 +19,4 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPredAirp() {
-		return predAirp;
-	}
-
-	public void setPredAirp(String predAirp) {
-		this.predAirp = predAirp;
-	}
-	
-	
-	
 }

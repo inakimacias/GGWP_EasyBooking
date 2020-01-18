@@ -1,5 +1,9 @@
 package service;
 
+import dao.DBManager;
+import gateways.ILoginGw;
+import jdo.Usuario;
+
 public class RegisterService {
 private static RegisterService instance;
 	
@@ -14,7 +18,11 @@ private static RegisterService instance;
 	}
 	
 	public void registro(String id, String password, String authType) {
-		
+		ILoginGw igw = Factory.getInstance().createLoginGw(authType);
+		if(igw.autenticar(id, password)) {
+			Usuario u = new Usuario();
+			u.setEmail(id);
+			DBManager.getInstance().guardarUsuario(u);
+		}
 	}
-
 }

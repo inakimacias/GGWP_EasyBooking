@@ -14,7 +14,6 @@ public class Assembler {
 	public DTOUsuario assemble(Usuario usuario) {
 		DTOUsuario dto = new DTOUsuario();
 		dto.setEmail(usuario.getEmail());
-		dto.setAerPred(usuario.getPredAirp());
 		return dto;
 	}
 	

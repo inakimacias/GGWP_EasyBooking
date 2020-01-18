@@ -6,7 +6,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.rmi.RemoteException;
 
 public class FacebookGw implements ILoginGw{
 	String serverIP;

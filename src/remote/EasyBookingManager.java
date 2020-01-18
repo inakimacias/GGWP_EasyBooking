@@ -8,6 +8,7 @@ import dto.DTOUsuario;
 import dto.DTOVuelo;
 import service.BuscarVueloService;
 import service.LoginService;
+import service.RegisterService;
 import service.ReservaService;
 
 public class EasyBookingManager extends UnicastRemoteObject implements IEasyBookingManager {
@@ -31,7 +32,7 @@ public class EasyBookingManager extends UnicastRemoteObject implements IEasyBook
 	}
 	
 	public boolean registrarse(String id, String password, String authType) throws RemoteException {
-		return false;
+		return RegisterService.getInstance().registro(id, password, authType);
 	}
 
 	public DTOUsuario login(String email, String password, String authType) throws RemoteException {
