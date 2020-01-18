@@ -27,8 +27,8 @@ public class EasyBookingManager extends UnicastRemoteObject implements IEasyBook
 		}
 		return instance;
 	}
-	public void registrarse(String id, String password, String authType) throws RemoteException {
-		
+	public boolean registrarse(String id, String password, String authType) throws RemoteException {
+		return false;
 	}
 
 	public DTOUsuario login(String email, String password, String authType) throws RemoteException {
