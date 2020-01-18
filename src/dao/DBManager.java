@@ -12,6 +12,7 @@ import javax.jdo.Transaction;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
+import jdo.InformePago;
 import jdo.Reserva;
 import jdo.Usuario;
 import jdo.Vuelo;
@@ -68,12 +69,8 @@ public class DBManager {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();	
 		try {
-			
-			
 			tx.begin();
-			
 			pm.makePersistent(u);
-			
 			tx.commit();
 		} catch (Exception ex) {
 			LOGGER.error("Error guardando datos " + ex.getMessage());
@@ -83,98 +80,33 @@ public class DBManager {
 		}
 	}
 	
-	public void borrarUsuario(String email) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		try {			
-			tx.begin();
-
-			@SuppressWarnings("unchecked")
-			Query<Usuario> query = pm.newQuery("SELECT FROM "+Usuario.class.getName());
-			for(Usuario user : query.executeList()) {
-				if(user.getEmail()==email) {
-					LOGGER.info(" - Borrando de la BD: "+user.toString());
-					pm.deletePersistent(user);
-				}
-			}
-			
-			tx.commit();
-		} catch (Exception ex) {
-			LOGGER.error(" $ Error deleting 'User->Address' relation: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) tx.rollback();
-			if (pm != null && !pm.isClosed()) pm.close();
-		}
-	}
-	
-	public void mostrarUsuarios() {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		try {
-			tx.begin();
-			LOGGER.info("MOSTRANDO");
-			@SuppressWarnings("unchecked")
-			Query<Usuario> query1 = pm.newQuery("SELECT FROM "+Usuario.class.getName());
-			for(Usuario user : query1.executeList()) {
-				LOGGER.info(user.getEmail());
-			}
-			
-			tx.commit();
-		} catch (Exception ex) {
-			LOGGER.error(" $ Error mostrando usuarios usando 'Query': " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) tx.rollback();
-			if (pm != null && !pm.isClosed()) pm.close();
-		}
-	}
-	
-	public void actualizarPassword(String email, String newPass) {
+	public void guardarReserva(Reserva r) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();	
-		try {			
+		try {
 			tx.begin();
-
-			LOGGER.info(" - Cambiando password del usuario "+email+" a "+newPass);
-			Usuario u = getUser(email);
-			pm.makePersistent(u);
-			
+			pm.makePersistent(r);
 			tx.commit();
 		} catch (Exception ex) {
-			LOGGER.error(" $ Error setting "+newPass+" as password for user: "+email+". " + ex.getMessage());
+			LOGGER.error("Error guardando datos " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) tx.rollback();
 			if (pm != null && !pm.isClosed()) pm.close();
 		}
 	}
 	
-	public void deleteData() {
-		List<Usuario> users = DBManager.getInstance().getAllUsers();
-		
-		for (Usuario user : users) {
-			DBManager.getInstance().deleteObjectFromDB(user);
-		}
-	}
-	
-	public void deleteObjectFromDB(Object object) {
+	public void guardarInforme(InformePago i) {
 		PersistenceManager pm = pmf.getPersistenceManager();
-		pm.getFetchPlan().setMaxFetchDepth(4);
-		Transaction tx = pm.currentTransaction();
-
+		Transaction tx = pm.currentTransaction();	
 		try {
 			tx.begin();
-			System.out.println(" * Delete an object: " + object);
-			
-			pm.deletePersistent(object);
-			
+			pm.makePersistent(i);
 			tx.commit();
 		} catch (Exception ex) {
-			System.out.println(" $ Error deleting an object: " + ex.getMessage());
+			LOGGER.error("Error guardando datos " + ex.getMessage());
 		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
+			if (tx != null && tx.isActive()) tx.rollback();
+			if (pm != null && !pm.isClosed()) pm.close();
 		}
 	}
 	
@@ -187,7 +119,6 @@ public class DBManager {
 		try {
 			System.out.println("  * Querying users");
 			tx.begin();
-			
 			@SuppressWarnings("unchecked")
 			Query<Usuario> query1 = pm.newQuery("SELECT FROM "+Usuario.class.getName());
 			for(Usuario user : query1.executeList()) {
@@ -235,32 +166,6 @@ public class DBManager {
 		return user;
 	}
 	
-	public Vuelo getVuelo(String idVuelo) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		pm.getFetchPlan().setMaxFetchDepth(4);
-		Transaction tx = pm.currentTransaction();
-		Vuelo vuelo = null; 
-
-		try {
-			System.out.println("  * Querying a Vuelo by idVuelo: " + idVuelo);
-			tx.begin();
-			
-			Query<?> query = pm.newQuery("SELECT FROM " + Vuelo.class.getName() + " WHERE idVuelo == '" + idVuelo + "'");
-			query.setUnique(true);
-			vuelo = (Vuelo) query.execute();
-			
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("  $ Error querying a Vuelo: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			pm.close();
-		}
-		return vuelo;
-	}
-	
 	public Reserva getReserva(String idReserva) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		pm.getFetchPlan().setMaxFetchDepth(4);
@@ -287,4 +192,29 @@ public class DBManager {
 		return reserva;
 	}
 	
+	public Reserva getInformePago(String idInformePago) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		pm.getFetchPlan().setMaxFetchDepth(4);
+		Transaction tx = pm.currentTransaction();
+		Reserva reserva = null; 
+
+		try {
+			System.out.println("  * Querying a Reserva by idReserva: " + idInformePago);
+			tx.begin();
+			
+			Query<?> query = pm.newQuery("SELECT FROM " + Vuelo.class.getName() + " WHERE idReserva == '" + idInformePago + "'");
+			query.setUnique(true);
+			reserva = (Reserva) query.execute();
+			
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("  $ Error querying a Reserva: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+		return reserva;
+	}
 }

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import dto.DTOUsuario;
 import dto.DTOVuelo;
-import jdo.Usuario;
 import service.LoginService;
 
 public class EasyBookingManager extends UnicastRemoteObject implements IEasyBookingManager {

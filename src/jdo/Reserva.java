@@ -9,7 +9,7 @@ public class Reserva {
 	@PrimaryKey
 	private String idReserva;
 	private int numPasajeros;
-	private String[] nombrePasajeros;
+	private String nombrePasajeros;
 	private String fecha;
 	
 	private Usuario usuario;
@@ -35,11 +35,11 @@ public class Reserva {
 		this.numPasajeros = numPasajeros;
 	}
 
-	public String[] getNombrePasajeros() {
+	public String getNombrePasajeros() {
 		return nombrePasajeros;
 	}
 
-	public void setNombrePasajeros(String[] nombrePasajeros) {
+	public void setNombrePasajeros(String nombrePasajeros) {
 		this.nombrePasajeros = nombrePasajeros;
 	}
 
