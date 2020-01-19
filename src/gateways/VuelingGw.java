@@ -39,17 +39,17 @@ public class VuelingGw implements IAerolineaGw{
 			String misVuelos = data.replace(" ", "");
 			ArrayList<String> vuelosMal = new ArrayList<String>();
 			for(int i = 0; i<misVuelos.split(",").length; i++) {
-				vuelosMal.add(misVuelos.split(";")[i]);
+				vuelosMal.add(misVuelos.split(",")[i]);
 			}
 			for(int j = 0; j<vuelosMal.size(); j++) {
-				vuelos.add(new Vuelo(vuelosMal.get(j).split(";")[0], //id
+				vuelos.add(new Vuelo(vuelosMal.get(j).split(";")[0].replace("[", ""), //id
 						vuelosMal.get(j).split(";")[2], //FechaSalida
 						vuelosMal.get(j).split(";")[3], //FechaLLegada
 						Integer.parseInt(vuelosMal.get(j).split(";")[6]), //AsientosVacantes
 						vuelosMal.get(j).split(";")[1], //Aerolinea
 						vuelosMal.get(j).split(";")[5], //Destino
 						vuelosMal.get(j).split(";")[4], //Origen
-						Integer.parseInt(vuelosMal.get(j).split(";")[7]))); //Precio
+						Integer.parseInt(vuelosMal.get(j).split(";")[7].replace("]", "")))); //Precio
 			}
 		} catch (UnknownHostException e) {
 			System.err.println("# TCPSocketClient: Socket error: " + e.getMessage());

@@ -18,7 +18,7 @@ public class EntidadGw implements IPagoGw{
 	
 	public EntidadGw() {
 		serverIP = "127.0.0.1";
-		serverPort = 8006;
+		serverPort = 8007;
 	}
 	
 	public void pagar(String id, double cantidad) {
