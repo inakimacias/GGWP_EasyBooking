@@ -44,7 +44,7 @@ public class ReservaService {
 		pgw.pagar(idCuenta, vuelo.getPrecio()*goodData.size());
 		
 		InformePago ip = new InformePago();
-		ip.setIdCuenta(DBManager.getInstance().getAllInformes().size()+"");
+		ip.setIdInformePago(DBManager.getInstance().getAllInformes().size()+"");
 		ip.setCoste(vuelo.getPrecio()*goodData.size());
 		ip.setFecha(d.toString());
 		ip.setMetodoPago(authType);

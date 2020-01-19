@@ -63,13 +63,11 @@ public class EasyBookingManager extends UnicastRemoteObject implements IEasyBook
 	}
 
 	public ArrayList<DTOReserva> buscarReservas(DTOUsuario usuario) throws RemoteException {
-		BuscarReservasService.getInstance().buscarReservas(usuario);
-		return null;
+		return BuscarReservasService.getInstance().buscarReservas(usuario);
 	}
 	
 	public DTOInformePago buscarInforme(DTOReserva reserva) throws RemoteException {
-		BuscarInformeService.getInstance().buscarInforme(reserva);
-		return null;
+		return BuscarInformeService.getInstance().buscarInforme(reserva);
 	}
 	
 }

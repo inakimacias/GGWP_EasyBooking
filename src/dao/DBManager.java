@@ -40,6 +40,9 @@ public class DBManager {
 		r.setNumPasajeros(5);
 		r.setNombrePasajeros("pasajero1;pasajero2");
 		r.setFecha("hoy");
+		Usuario p = new Usuario();
+		p.setEmail("email@prueba.es");
+		r.setUsuario(p);
 		InformePago i = new InformePago();
 		i.setCoste(20.8);
 		i.setFecha("maniana");
