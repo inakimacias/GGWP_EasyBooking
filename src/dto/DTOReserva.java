@@ -1,7 +1,13 @@
 package dto;
 
-public class DTOReserva {
+import java.io.Serializable;
 
+public class DTOReserva implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String idReserva;
 	private int numPasajeros;
 	private String fecha;
@@ -24,6 +30,12 @@ public class DTOReserva {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	
+	@Override
+	public String toString() {
+		return "DTOReserva [idReserva=" + idReserva + ", numPasajeros=" + numPasajeros + ", fecha=" + fecha + "]";
+	}
+	
 	
 	
 	

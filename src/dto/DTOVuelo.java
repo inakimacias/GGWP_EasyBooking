@@ -1,7 +1,13 @@
 package dto;
 
-public class DTOVuelo {
+import java.io.Serializable;
 
+public class DTOVuelo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String idVuelo;
 	private String salidaFecha;
 	private String llegadaFecha;
@@ -59,6 +65,13 @@ public class DTOVuelo {
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
+	@Override
+	public String toString() {
+		return "DTOVuelo [idVuelo=" + idVuelo + ", salidaFecha=" + salidaFecha + ", llegadaFecha=" + llegadaFecha
+				+ ", asientosVacantes=" + asientosVacantes + ", aerolinea=" + aerolinea + ", aeropuertoDestino="
+				+ aeropuertoDestino + ", aeropuertoOrigen=" + aeropuertoOrigen + ", precio=" + precio + "]";
+	}
+	
 	
 	
 	

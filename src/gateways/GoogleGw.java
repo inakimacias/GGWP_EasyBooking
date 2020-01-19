@@ -22,8 +22,8 @@ public class GoogleGw implements ILoginGw{
 		serverPort = 8002;
 	}
 	
-	public boolean autenticar(String email, String password) {
-		boolean b = false;
+	public String autenticar(String email, String password) {
+		String s = "false";
 		try (Socket tcpSocket = new Socket(serverIP, serverPort);
 		DataInputStream in = new DataInputStream(tcpSocket.getInputStream());
 		DataOutputStream out = new DataOutputStream(tcpSocket.getOutputStream())){
@@ -33,10 +33,7 @@ public class GoogleGw implements ILoginGw{
 			
 			String data = in.readUTF();			
 			System.out.println(" - TCPSocketClient: Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
-			
-			if(data.split(";")[0]=="true") {
-				b=true;
-			}
+			s=data;
 		} catch (UnknownHostException e) {
 			System.err.println("# TCPSocketClient: Socket error: " + e.getMessage());
 		} catch (EOFException e) {
@@ -44,7 +41,7 @@ public class GoogleGw implements ILoginGw{
 		} catch (IOException e) {
 			System.err.println("# TCPSocketClient: IO error: " + e.getMessage());
 		}
-		return b;
+		return s;
 	}
 	
 }

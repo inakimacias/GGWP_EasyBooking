@@ -1,5 +1,5 @@
 package gateways;
 
 public interface ILoginGw {
-	public boolean autenticar(String nick, String password);
+	public String autenticar(String nick, String password);
 }

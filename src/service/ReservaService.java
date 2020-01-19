@@ -44,6 +44,7 @@ public class ReservaService {
 		pgw.pagar(idCuenta, vuelo.getPrecio()*goodData.size());
 		
 		InformePago ip = new InformePago();
+		ip.setIdCuenta(DBManager.getInstance().getAllInformes().size()+"");
 		ip.setCoste(vuelo.getPrecio()*goodData.size());
 		ip.setFecha(d.toString());
 		ip.setMetodoPago(authType);
@@ -51,11 +52,13 @@ public class ReservaService {
 		DBManager.getInstance().guardarInforme(ip);
 		
 		Reserva r = new Reserva();
+		r.setIdReserva(DBManager.getInstance().getAllReservas().size()+"");
 		r.setNumPasajeros(goodData.size());
 		r.setNombrePasajeros(nombres);
 		r.setFecha(d.toString());
 		r.setUsuario(usuario);
 		r.setVuelo(vuelo);
+		r.setInformePago(ip);
 		DBManager.getInstance().guardarReserva(r);
 	}
 
