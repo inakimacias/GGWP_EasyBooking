@@ -32,10 +32,7 @@ public class FacebookGw implements ILoginGw{
 			
 			String data = in.readUTF();			
 			System.out.println(" - TCPSocketClient: Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
-			
-			if(data.split(";")[0]=="true") {
-				s=data;
-			}
+			s=data;
 		} catch (UnknownHostException e) {
 			System.err.println("# TCPSocketClient: Socket error: " + e.getMessage());
 		} catch (EOFException e) {
