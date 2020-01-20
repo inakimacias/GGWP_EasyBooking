@@ -21,8 +21,8 @@ public class FacebookGw implements ILoginGw{
 		serverPort = 8001;
 	}
 	
-	public boolean autenticar(String nick, String password) {
-		boolean b = false;
+	public String autenticar(String nick, String password) {
+		String s = "";
 		try (Socket tcpSocket = new Socket(serverIP, serverPort);
 		DataInputStream in = new DataInputStream(tcpSocket.getInputStream());
 		DataOutputStream out = new DataOutputStream(tcpSocket.getOutputStream())){
@@ -34,7 +34,7 @@ public class FacebookGw implements ILoginGw{
 			System.out.println(" - TCPSocketClient: Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
 			
 			if(data.split(";")[0]=="true") {
-				b=true;
+				s=data;
 			}
 		} catch (UnknownHostException e) {
 			System.err.println("# TCPSocketClient: Socket error: " + e.getMessage());
@@ -43,7 +43,7 @@ public class FacebookGw implements ILoginGw{
 		} catch (IOException e) {
 			System.err.println("# TCPSocketClient: IO error: " + e.getMessage());
 		}
-		return b;
+		return s;
 	}
 	
 }

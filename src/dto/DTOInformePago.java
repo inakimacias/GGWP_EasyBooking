@@ -1,7 +1,13 @@
 package dto;
 
-public class DTOInformePago {
+import java.io.Serializable;
 
+public class DTOInformePago implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String idInformePago;
 	private double coste;
 	private String fecha;
@@ -38,5 +44,12 @@ public class DTOInformePago {
 	public void setIdCuenta(String idCuenta) {
 		this.idCuenta = idCuenta;
 	}
+	
+	@Override
+	public String toString() {
+		return "DTOInformePago [idInformePago=" + idInformePago + ", coste=" + coste + ", fecha=" + fecha
+				+ ", MetodoPago=" + MetodoPago + ", idCuenta=" + idCuenta + "]";
+	}
+	
 	
 }

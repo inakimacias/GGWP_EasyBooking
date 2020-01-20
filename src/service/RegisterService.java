@@ -17,18 +17,15 @@ private static RegisterService instance;
 		return instance;
 	}
 	
-	public boolean registro(String id, String password, String authType) {
+	public String registro(String id, String password, String authType) {
+		String result = "";
 		ILoginGw igw = Factory.getInstance().createLoginGw(authType);
-		if(igw.autenticar(id, password)) {
+		if(igw.autenticar(id, password).split(";")[0].equals("true")) {
+			result = "true;"+id;
 			Usuario u = new Usuario();
 			u.setEmail(id);
-			try {
-				DBManager.getInstance().guardarUsuario(u);
-			} catch (Exception e) {
-				return false;
-			}
-			return true;
+			DBManager.getInstance().guardarUsuario(u);
 		}
-		return false;		
+		return result;
 	}
 }

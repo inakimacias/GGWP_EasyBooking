@@ -5,8 +5,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import dto.DTOInformePago;
+import dto.DTOReserva;
 import dto.DTOUsuario;
 import dto.DTOVuelo;
+import service.BuscarInformeService;
+import service.BuscarReservasService;
 import service.BuscarVueloService;
 import service.LoginService;
 import service.RegisterService;
@@ -42,7 +46,7 @@ public class EasyBookingManager extends UnicastRemoteObject implements IEasyBook
 		}
 	}
 	
-	public boolean registrarse(String id, String password, String authType) throws RemoteException {
+	public String registrarse(String id, String password, String authType) throws RemoteException {
 		return RegisterService.getInstance().registro(id, password, authType);
 	}
 
@@ -57,4 +61,13 @@ public class EasyBookingManager extends UnicastRemoteObject implements IEasyBook
 	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, String nombres, String authType, String idCuenta) throws RemoteException {
 		ReservaService.getInstance().reservar(usuario, vuelo, nombres, authType, idCuenta);
 	}
+
+	public ArrayList<DTOReserva> buscarReservas(DTOUsuario usuario) throws RemoteException {
+		return BuscarReservasService.getInstance().buscarReservas(usuario);
+	}
+	
+	public DTOInformePago buscarInforme(DTOReserva reserva) throws RemoteException {
+		return BuscarInformeService.getInstance().buscarInforme(reserva);
+	}
+	
 }
