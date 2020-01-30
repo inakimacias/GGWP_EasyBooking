@@ -1,5 +1,4 @@
-  
-<project name="GGWP_EasyBookingServer" default="RUN SERVER" basedir=".">
+  <project name="GGWP_EasyBookingServer" default="RUN SERVER" basedir=".">
     <property name="src.dir" location="src"/>
     <property name="bin.dir" location="bin"/>
 	<property name="lib.dir" location="lib"/>
